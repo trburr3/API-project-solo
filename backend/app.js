@@ -9,6 +9,7 @@ const { environment } = require('./config');
 const isProduction = environment === 'production';
 const { ValidationError } = require('sequelize');
 
+
 const app = express();
 app.use(morgan('dev'));
 app.use(cookieParser());

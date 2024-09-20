@@ -11,6 +11,22 @@ router.use('/api', apiRouter);
 //   res.send('Hello World!');
 // });
 
+// GET /api/set-token-cookie
+// const { setTokenCookie } = require('../utils/auth.js');
+// const { User } = require('../db/models');
+// router.get('/api/set-token-cookie', async (_req, res) => {
+//   const user = await User.findOne({
+//     where: {
+//       username: 'Demo-lition'
+//     }
+//   });
+//   setTokenCookie(res, user);
+//   return res.json({ user: user });
+// });
+
+
+
+
 router.get("/api/csrf/restore", (req, res) => {
   const csrfToken = req.csrfToken();
   res.cookie("XSRF-TOKEN", csrfToken);
