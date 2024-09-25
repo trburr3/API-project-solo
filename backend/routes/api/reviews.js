@@ -11,6 +11,18 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+//validator function
+const validateReview = [
+  check('review')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .isInt({min:0, max:5})
+    .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
+]
 
 //Get all Reviews of the Current User
 
@@ -51,7 +63,7 @@ router.get("/current", async (req, res) => {
           reviewJson.ReviewImages.length > 0
             ? reviewJson.ReviewImages.map(image => ({ id: image.id, url: image.url }))
             : "No review image yet.";
-  
+
       return {
         id: reviewJson.id,
         userId: reviewJson.userId,
@@ -83,7 +95,71 @@ router.get("/current", async (req, res) => {
 
 // Get all Reviews by a Spot's id （this url like /api/spots/:spotId/reviews,so =>spots.js)
 
+//add an image to a review based on spot id
 
+router.post('/:reviewId/images', async (req, res, next) => {
+  const { user } = req;
+
+  const { url } = req.body;
+
+  const reviewId = req.params.reviewId;
+
+  const review = await Review.findByPk(reviewId);
+
+  const numImages = await ReviewImage.count({
+    where: {
+      reviewId
+    }
+  });
+
+  if ( review ) {
+
+    if (numImages <= 10) {
+      const newReviewImage = await ReviewImage.create({ reviewId, url });
+
+      return res.status(201).json(newReviewImage);
+    }
+
+    return res.status(403).json( {message: "Maximum number of images for this resource was reached"} )
+
+  }
+
+  return res.status(404).json( {message: "Reivew couldn't be found"});
+});
+
+//edit a review
+
+router.put('/:reviewId', validateReview, async (req, res, next) => {
+  const { user } = req;
+
+  const reviewId = req.params.reviewId;
+
+  const review = await Review.findByPk(reviewId);
+
+  if ( review ) {
+    for(let attribute in req.body ) {
+      review[attribute] = req.body[attribute];
+    }
+
+    return res.json( review );
+  }
+
+  if( !review ) return res.status(404).json( {message: "Reivew couldn't be found"});
+});
+
+//delete a review
+
+router.delete('/:reviewId', async (req, res, next) => {
+  const reviewId = req.params.reviewId;
+
+  const review = await Review.destroy({
+      where: {id: reviewId}
+  });
+
+  if (review) return res.json( {message: "Review has been successfully deleted."} );
+
+  if(!review) return res.status(404).json( {message: "Reivew couldn't be found"});
+});
 
 // end of this page
 module.exports = router;
