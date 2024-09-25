@@ -132,5 +132,30 @@ router.get("/current", async (req, res) => {
 
 
 
+// Get all Reviews by a Spot's id （this url like /api/spots/:spotId/reviews,so =>spots.js)
+
+router.get("/:spotId/reviews", async (req, res) => {
+
+  const spot = await Spot.findByPk(req.params.spotId);
+
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+  }
+
+  const reviews = await Review.findAll({
+    where: { spotId: req.params.spotId },
+    include: [
+      { model: User, attributes: ["id", "firstName", "lastName"] },
+      { model: ReviewImage, attributes: ["id", "url"] },
+    ],
+  });
+
+  return res.status(200).json({ Reviews: reviews });
+});
+
+
+
 // end of this page
 module.exports = router;
