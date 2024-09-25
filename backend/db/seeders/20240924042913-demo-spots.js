@@ -19,7 +19,7 @@ const spotData = [
     lng: -118.2437,
     name: "Hollywood Hills Villa",
     description:
-      "A luxurious villa located in the heart of Hollywood Hills. This modern home features sleek, minimalist architecture with floor-to-ceiling glass walls that provide panoramic views of the city and the ocean. The villa includes a private infinity pool and multiple outdoor lounge areas.",
+      "A luxurious villa located in the heart of Hollywood Hills.",
     price: 800,
   },
   {
@@ -32,7 +32,7 @@ const spotData = [
     lng: -120.0324,
     name: "Lakeside Cabin",
     description:
-      "A rustic log cabin situated right on the shores of Lake Tahoe. This cabin boasts a private dock, cozy stone fireplace, and a spacious deck with stunning views of the crystal-clear lake. Perfect for a peaceful retreat or outdoor activities like boating and fishing.",
+      "A rustic log cabin situated right on the shores of Lake Tahoe.",
     price: 300,
   },
   {
@@ -45,7 +45,7 @@ const spotData = [
     lng: -80.1918,
     name: "Oceanview Penthouse",
     description:
-      "A sleek and modern penthouse offering uninterrupted ocean views in the heart of Miami Beach. The interior features open-plan living spaces, a gourmet kitchen, and a rooftop terrace complete with a hot tub. Ideal for those looking to enjoy Miami's vibrant nightlife and beaches.",
+      "A sleek and modern penthouse offering uninterrupted ocean views in the heart of Miami Beach. ",
     price: 1200,
   },
   {
@@ -58,7 +58,7 @@ const spotData = [
     lng: -106.8175,
     name: "Mountain Ski Lodge",
     description:
-      "An upscale ski lodge nestled in the mountains of Aspen, this lodge is perfect for winter sports enthusiasts. Featuring traditional alpine decor, the lodge includes a large stone fireplace, outdoor hot tub, and private access to ski slopes. The views of snow-capped peaks are truly breathtaking.",
+      "An upscale ski lodge nestled in the mountains of Aspen.",
     price: 1000,
   },
   {
@@ -71,7 +71,7 @@ const spotData = [
     lng: -111.7608,
     name: "Red Rock Haven",
     description:
-      "A serene retreat located in the desert landscape of Sedona, surrounded by the iconic red rock formations. The house features large, open spaces with a blend of natural stone and wooden finishes, providing a tranquil atmosphere. The private outdoor patio is perfect for stargazing.",
+      "A serene retreat located in the desert landscape of Sedona.",
     price: 400,
   }
 ]
