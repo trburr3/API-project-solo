@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
-const SpotImageData = [
+const SpotImages = [
   {
     spotId: 1,
     url: "https://pixabay.com/zh/photos/mountain-volcano-peak-summit-477832/",
@@ -39,7 +39,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await SpotImage.bulkCreate(SpotImageData,{validate:true})
+   await SpotImage.bulkCreate(SpotImages,{validate:true})
   },
 
   async down (queryInterface, Sequelize) {
@@ -51,6 +51,6 @@ module.exports = {
      */
     options.tableName = "SpotImages";
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, spotImageData, {});
+    return queryInterface.bulkDelete(options, SpotImages, {});
   }
 };
