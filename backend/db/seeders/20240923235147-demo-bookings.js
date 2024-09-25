@@ -13,32 +13,32 @@ const bookings = [
   {
     spotId: 2,
     userId: 3,
-    startDate: newDate(Date.UTC(125, 6, 30)),
-    endDate: newDate(Date.UTC(125, 7, 4))
+    startDate: new Date(Date.UTC(125, 6, 30)),
+    endDate: new Date(Date.UTC(125, 7, 4))
   },
   {
     spotId: 1,
     userId: 4,
-    startDate: newDate(Date.UTC(125, 2, 1)).toUTCString(),
-    endDate: newDate(Date.UTC(125, 2, 5)).toUTCString()
+    startDate: new Date(Date.UTC(125, 2, 1)),
+    endDate: new Date(Date.UTC(125, 2, 5))
   },
   {
     spotId: 5,
     userId: 5,
-    startDate: newDate(Date.UTC(124, 11, 15)).toUTCString(),
-    endDate: newDate(Date.UTC(124, 11, 25)).toUTCString()
+    startDate: new Date(Date.UTC(124, 11, 15)),
+    endDate: new Date(Date.UTC(124, 11, 25))
   },
   {
     spotId: 3,
     userId: 1,
-    startDate: newDate(Date.UTC(125, 0, 3)).toUTCString(),
-    endDate: newDate(Date.UTC(125, 0, 10)).toUTCString()
+    startDate: new Date(Date.UTC(125, 0, 3)),
+    endDate: new Date(Date.UTC(125, 0, 10))
   },
   {
     spotId: 4,
     userId: 2,
-    startDate: newDate(Date.UTC(124, 9, 30)).toUTCString(),
-    endDate: newDate(Date.UTC(124, 10, 2)).toUTCString()
+    startDate: new Date(Date.UTC(124, 9, 30)),
+    endDate: new Date(Date.UTC(124, 10, 2))
   }
 ]
 
@@ -53,6 +53,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+
     await Booking.bulkCreate(bookings, { validate: true });
   },
 

@@ -2,9 +2,10 @@
 const {
   Model
 } = require('sequelize');
-const { Sequelize } = require('.');
+
+
 module.exports = (sequelize, DataTypes) => {
-  class Bookings extends Model {
+  class Review extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,16 +13,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Bookings.belongsTo(models.User, {
+      Review.hasMany(models.ReviewImage, {
+        foreignKey: "reviewId",
+        onDelete: "CASCADE"
+      });
+
+      Review.belongsTo(models.User, {
         foreignKey: "userId"
       });
 
-      Bookings.belongsTo(models.Spots, {
+      Review.belongsTo(models.Spot, {
         foreignKey: "spotId"
       })
     }
   }
-  Bookings.init({
+  Review.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -34,31 +40,36 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    startDate: {
-      type: DataTypes.DATE,
       allowNull: false,
-      unique: true,
+      // unique: true
+    },
+    review: {
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isDate: true,
-        isBefore: this.endDate,
-        isAfter: Sequelize.literal('CURRENT_TIMESTAMP')
+        isEmpty(value) {
+          if(value.length === 0){
+            throw new Error("Review text is required")
+          }
+        }
       }
     },
-    endDate: {
-      type: DataTypes.DATE,
+    stars: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
       validate: {
-        isDate: true,
-        isAfter: this.startDate,
-        // isBefore
-      }
-    },
+        min: 1,
+        max: 5,
+        outOfRange(value) {
+          if (value < 1 || value > 5) {
+            throw new Error("Stars must be an integer from 1 to 5");
+          }
+       }
+     }
+    }
   }, {
     sequelize,
-    modelName: 'Bookings',
+    modelName: 'Review',
   });
-  return Bookings;
+  return Review;
 };
