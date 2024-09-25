@@ -13,32 +13,32 @@ const bookings = [
   {
     spotId: 2,
     userId: 3,
-    startDate: new Date(Date.UTC(125, 6, 30)),
-    endDate: new Date(Date.UTC(125, 7, 4))
+    startDate: new Date(Date.UTC(2024, 11, 30)),
+    endDate: new Date(Date.UTC(2024, 12, 4))
   },
   {
     spotId: 1,
     userId: 4,
-    startDate: new Date(Date.UTC(125, 2, 1)),
-    endDate: new Date(Date.UTC(125, 2, 5))
+    startDate: new Date(Date.UTC(2024, 12, 1)),
+    endDate: new Date(Date.UTC(2024, 12, 5))
   },
   {
     spotId: 5,
     userId: 5,
-    startDate: new Date(Date.UTC(124, 11, 15)),
-    endDate: new Date(Date.UTC(124, 11, 25))
+    startDate: new Date(Date.UTC(2024, 12, 15)),
+    endDate: new Date(Date.UTC(2024, 12, 25))
   },
   {
     spotId: 3,
     userId: 1,
-    startDate: new Date(Date.UTC(125, 0, 3)),
-    endDate: new Date(Date.UTC(125, 0, 10))
+    startDate: new Date(Date.UTC(2024, 12, 3)),
+    endDate: new Date(Date.UTC(2024, 12, 10))
   },
   {
     spotId: 4,
     userId: 2,
-    startDate: new Date(Date.UTC(124, 9, 30)),
-    endDate: new Date(Date.UTC(124, 10, 2))
+    startDate: new Date(Date.UTC(2024, 12, 3)),
+    endDate: new Date(Date.UTC(2024, 12, 10))
   }
 ]
 
@@ -55,6 +55,7 @@ module.exports = {
     */
 
     await Booking.bulkCreate(bookings, { validate: true });
+
   },
 
   async down (queryInterface, Sequelize) {

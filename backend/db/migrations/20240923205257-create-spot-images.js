@@ -16,12 +16,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      // spotId: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false,
-      //   references: { model: "Spots" },
-      //   onDelete: "CASCADE",
-      // },
+      spotId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       url: {
         type: Sequelize.STRING,
         allowNull:false

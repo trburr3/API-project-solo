@@ -2,33 +2,21 @@
 
 /** @type {import('sequelize-cli').Migration} */
 
-const { ReviewImages } = require('../models')
+const { ReviewImage } = require('../models')
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
-const reviewImage = [
+const reviewImageData = [
   {
     reviewId: 4,
-    url: "image one url"
+    url: "https://images.app.goo.gl/jYJGSQZfJMUGwsVH9"
   },
   {
     reviewId: 2,
-    url: "image two url"
-  },
-  {
-    reviewId: 5,
-    url: "image three url"
-  },
-  {
-    reviewId: 1,
-    url: "image four url"
-  },
-  {
-    reviewId: 3,
-    url: "image five url"
+    url: "https://images.app.goo.gl/4pMTvNj9YoVVFFbV6"
   }
 ]
 
@@ -43,7 +31,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await ReviewImages.bulkCreate(reviewImage, { validate: true });
+    await ReviewImage.bulkCreate(reviewImageData, { validate: true });
   },
 
   async down (queryInterface, Sequelize) {
@@ -55,7 +43,7 @@ module.exports = {
      */
     options.tableName = "ReviewImages";
     return queryInterface.bulkDelete(options, {
-      reviewId: reviewImage.map( ReviewImages => ReviewImages.reviewId)
+      reviewId: reviewImageData.map( ReviewImages => ReviewImages.reviewId)
     }, {});
   }
 };
