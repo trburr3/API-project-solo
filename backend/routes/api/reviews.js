@@ -70,8 +70,8 @@ router.get("/current", async (req, res) => {
         spotId: reviewJson.spotId,
         review: reviewJson.review,
         stars: reviewJson.stars,
-        createdAt: formatTime(reviewJson.createdAt),
-        updatedAt: formatTime(reviewJson.updatedAt),
+        createdAt: reviewJson.createdAt,
+        updatedAt: reviewJson.updatedAt,
         User: reviewJson.User,
         Spot: {
           id: reviewJson.Spot.id,
