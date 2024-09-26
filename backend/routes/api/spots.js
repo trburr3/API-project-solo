@@ -65,6 +65,8 @@ const validateReview = [
   handleValidationErrors
 ]
 
+const validateQuery = []
+
 // Get all Spots
 // need three model:user;review(avgRating);spotimage(previewImage)
 
@@ -260,15 +262,22 @@ router.put('/:spotId', validateSpot, async(req, res, next) => {
 router.delete('/:spotId', async (req,res,next) => {
   const spotId = req.params.spotId;
 
+  console.log(req.params);
+
   const { user } = req;
 
-  const spot = await Spot.destroy({
+  const spot = await Spot.findByPk(spotId);
+
+  if ( spot && spot.ownerId === user.id ) {
+
+    const spot = await Spot.destroy({
       where: {id: spotId}
-  });
+    });
 
-  if ( spot && spot.ownerId === user.id ) return res.json( {message: "Successfully deleted."} );
+    return res.json( {message: "Successfully deleted."} )
+  };
 
-  if(!spot) return res.status(404).json({message: "Spot couldn't be found"});;
+  return res.status(404).json({message: "Spot couldn't be found"});;
 });
 
 //creat a review based on spot id
