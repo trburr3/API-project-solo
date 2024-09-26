@@ -12,7 +12,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 // maybe we need validate
-const validateBody = [
+const validateSpot = [
   check('address')
     .exists({ checkFalsy: true })
     .notEmpty()
@@ -208,7 +208,7 @@ router.get("/:spotId/reviews", async (req, res) => {
 
 
 //create a spot
-router.post('/', validateBody, async (req,res,next) => {
+router.post('/', validateSpot, async (req,res,next) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
   const { user } = req;
@@ -236,7 +236,7 @@ router.post('/:spotId/images', async (req, res, next) => {
 });
 
 //edit a spot based on spot id
-router.put('/:spotId', validateBody, async(req, res, next) => {
+router.put('/:spotId', validateSpot, async(req, res, next) => {
   const spotId = req.params.spotId;
 
   const { user } = req;

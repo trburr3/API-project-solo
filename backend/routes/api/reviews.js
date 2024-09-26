@@ -112,7 +112,7 @@ router.post('/:reviewId/images', async (req, res, next) => {
     }
   });
 
-  if ( review ) {
+  if ( review && Review.userId === user.id ) {
 
     if (numImages <= 10) {
       const newReviewImage = await ReviewImage.create({ reviewId, url });
@@ -136,7 +136,7 @@ router.put('/:reviewId', validateReview, async (req, res, next) => {
 
   const review = await Review.findByPk(reviewId);
 
-  if ( review ) {
+  if ( review && review.userId === user.id ) {
     for(let attribute in req.body ) {
       review[attribute] = req.body[attribute];
     }
@@ -144,7 +144,7 @@ router.put('/:reviewId', validateReview, async (req, res, next) => {
     return res.json( review );
   }
 
-  if( !review ) return res.status(404).json( {message: "Reivew couldn't be found"});
+  return res.status(404).json( {message: "Reivew couldn't be found"});
 });
 
 //delete a review
@@ -152,13 +152,19 @@ router.put('/:reviewId', validateReview, async (req, res, next) => {
 router.delete('/:reviewId', async (req, res, next) => {
   const reviewId = req.params.reviewId;
 
-  const review = await Review.destroy({
+  const { user } = req;
+
+  const review = await Review.findByPk(reviewId);
+
+  if (review && review.userId === user.id ){
+    await Review.destroy({
       where: {id: reviewId}
-  });
+    });
 
-  if (review) return res.json( {message: "Review has been successfully deleted."} );
+    return res.json( {message: "Review has been successfully deleted."} );
+  }
 
-  if(!review) return res.status(404).json( {message: "Reivew couldn't be found"});
+  return res.status(404).json( {message: "Reivew couldn't be found"});
 });
 
 // end of this page
