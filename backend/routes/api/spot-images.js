@@ -12,14 +12,14 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
-//delete image by spot id
+//delete spotImage by image id
 
 router.delete('/:imageId', async ( res, req, next ) => {
     const { user } = req;
 
-    console.log(req.params)
+    console.log('PARAMS SHOULD BE HERE:',`\n\n${req.params}\n\n`);
 
-    console.log(req.url);
+    console.log('URL SHOULD BE HERE',`\n\n${req.url}\n\n`);
 
     const imageId = req.params.imageId;
 

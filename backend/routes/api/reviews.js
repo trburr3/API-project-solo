@@ -95,7 +95,7 @@ router.get("/current", async (req, res) => {
 
 // Get all Reviews by a Spot's id （this url like /api/spots/:spotId/reviews,so =>spots.js)
 
-//add an image to a review based on spot id
+//add an image to a review based on review id
 
 router.post('/:reviewId/images', async (req, res, next) => {
   const { user } = req;
@@ -112,7 +112,7 @@ router.post('/:reviewId/images', async (req, res, next) => {
     }
   });
 
-  if ( review && Review.userId === user.id ) {
+  if ( review && review.userId === user.id ) {
 
     if (numImages <= 10) {
       const newReviewImage = await ReviewImage.create({ reviewId, url });
