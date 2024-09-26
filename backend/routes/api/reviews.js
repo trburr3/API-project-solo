@@ -161,7 +161,7 @@ router.delete('/:reviewId', async (req, res, next) => {
       where: {id: reviewId}
     });
 
-    return res.json( {message: "Review has been successfully deleted."} );
+    return res.json( {message: "Successfully deleted."} );
   }
 
   return res.status(404).json( {message: "Reivew couldn't be found"});

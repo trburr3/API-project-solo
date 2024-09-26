@@ -222,6 +222,8 @@ router.post('/', validateSpot, async (req,res,next) => {
 router.post('/:spotId/images', async (req, res, next) => {
   const { url, preview } = req.body;
 
+  const { user } = req;
+
   const spotId = req.params.spotId;
 
   const spot = await Spot.findByPk(spotId);
@@ -264,7 +266,7 @@ router.delete('/:spotId', async (req,res,next) => {
       where: {id: spotId}
   });
 
-  if ( spot && spot.ownerId === user.id ) return res.json( {message: "Spot has been successfully deleted."} );
+  if ( spot && spot.ownerId === user.id ) return res.json( {message: "Successfully deleted."} );
 
   if(!spot) return res.status(404).json({message: "Spot couldn't be found"});;
 });

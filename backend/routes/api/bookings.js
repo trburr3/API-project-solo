@@ -34,14 +34,28 @@ router.put('/:bookingId', validateBooking, async (req, res, next) => {
 
     const bookingId = req.params.bookingId;
 
-    const booking = Booking.findByPk(bookingId);
+    const booking = await Booking.findByPk(bookingId);
 
-    console.log(booking.userId)
-    console.log(user.id)
+    const err = new Error('booking conflict');
 
-    if ( booking ){
+    if ( booking && booking.userId === user.id ){
+        const startConflict= (booking.startDate === startDate);
+
+        const endConflict = (booking.endDate === endDate);
+
         if (new Date(endDate) <= new Date()){
-            res.status(403).json( {message: "Past bookings can't be modified"})
+            return res.status(403).json( {message: "Past bookings can't be modified"})
+        }
+
+        if(startConflict){
+            err.errors = {startDate: "Start date conflicts with an existing booking"};
+            return res.status(403).json( {message: "Sorry, this spot is already booked for the specified dates"}, err.errors)
+        } else if (endConflict) {
+            err.errors = {endDate: "End date conflicts with an existing booking"};
+            return res.status(403).json( {message: "Sorry, this spot is already booked for the specified dates"}, err.errors)
+        } else if (startConflict && endConflict){
+            err.errors = {startDate: "Start date conflicts with an existing booking", endDate: "End date conflicts with an existing booking"};
+            return res.status(403).json( {message: "Sorry, this spot is already booked for the specified dates"}, err.errors)
         }
 
         for(let attribute in req.body){
@@ -51,10 +65,30 @@ router.put('/:bookingId', validateBooking, async (req, res, next) => {
         return res.json(booking)
     }
 
-    return res.status(404).json( {message: "Booking couldn't be found"})
+    if ( !booking ) return res.status(404).json( {message: "Booking couldn't be found"})
 });
 
-//
+//delete a booking
+router.delete('/:bookingId', async (req, res, next) => {
+    const bookingId = req.params.bookingId;
+
+    const { user } = req;
+
+    const booking = await Booking.findByPk(bookingId);
+
+    if (booking && booking.userId === user.id ){
+        if(booking.startDate >= new Date()){
+            return res.status(403).json( {message: "Bookings that have been started can't be deleted"} );
+        }
+        await Booking.destroy({
+            where: {id: bookingId}
+        });
+
+      return res.json( {message: "Successfully deleted."} );
+    }
+
+    return res.status(404).json( {message: "Booking couldn't be found"});
+  });
 
 // end of this page
 module.exports = router;
