@@ -127,7 +127,51 @@ router.get("/current", async (req, res) => {
   
 
 
-// Get details of a Spot from an id (four table)
+// Get details of a Spot from an id 
+router.get('/:spotId', async (req, res) => {
+  
+  const { spotId } = req.params;
+
+  try {
+    const spot = await Spot.findByPk(spotId, {
+      include: [
+        {
+          model: SpotImage,
+          attributes: ['id', 'url', 'preview']
+        },
+        {
+          model: User,
+          as: 'Owner',
+          attributes: ['id', 'firstName', 'lastName']
+        }
+      ]
+    });
+
+    if (!spot) {
+      return res.status(404).json({ message: "Spot couldn't be found" });
+    }
+
+    const reviews = await Review.findAndCountAll({
+      where: { spotId: spot.id },
+      attributes: [
+        [Spot.sequelize.fn('AVG', Spot.sequelize.col('stars')), 'avgStarRating']
+      ]
+    });
+
+    const avgStarRating = parseFloat(reviews.rows[0].dataValues.avgStarRating).toFixed(1);
+
+    const spotDetails = {
+      ...spot.toJSON(),
+      numReviews: reviews.count,
+      avgStarRating: avgStarRating || null,
+    };
+
+    return res.status(200).json(spotDetails);
+  } catch (err) {
+    return res.status(500).json({ message: 'Error' });
+  }
+});
+
 
 
 
@@ -148,11 +192,46 @@ router.get("/:spotId/reviews", async (req, res) => {
     where: { spotId: req.params.spotId },
     include: [
       { model: User, attributes: ["id", "firstName", "lastName"] },
+      // { model: Spot},
       { model: ReviewImage, attributes: ["id", "url"] },
     ],
   });
 
   return res.status(200).json({ Reviews: reviews });
+});
+
+// test
+// {
+//   "XSRF-Token": "z6PED6ws-rTetWgBJzf9U8jOQ5z0UGFGomIQ"
+// }
+
+
+// Get all Bookings for a Spot based on the Spot's id
+router.get("/:spotId/bookings", requireAuth, async (req, res) => {
+  const spot = await Spot.findByPk(req.params.spotId);
+  
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+    });
+  }
+
+  const { user } = req;
+  const owner = await spot.getOwner();
+  
+  if (user.id !== owner.id) {
+    const bookings = await Booking.findAll({
+      where: { spotId: spot.id },
+      attributes: ["spotId", "startDate", "endDate"],
+    });
+    return res.status(200).json({ Bookings: bookings });
+  } else {
+    const bookings = await Booking.findAll({
+      where: { spotId: spot.id },
+      include: [{ model: User, attributes: ["id", "firstName", "lastName"] }],
+    });
+    return res.status(200).json({ Bookings: bookings });
+  }
 });
 
 
