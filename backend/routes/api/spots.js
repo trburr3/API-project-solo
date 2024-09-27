@@ -3,7 +3,7 @@ const express = require('express')
 const { Op, Sequelize } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const {User,Spot,SpotImage,Review,ReviewImage,Booking} = require("../../db/models");
 
 const { check } = require('express-validator');
@@ -327,7 +327,7 @@ router.get("/:spotId/bookings", async (req, res) => {
 
 
 //create a spot
-router.post('/', validateSpot, async (req,res,next) => {
+router.post('/', validateSpot, requireAuth, async (req,res,next) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
   const { user } = req;
@@ -338,7 +338,7 @@ router.post('/', validateSpot, async (req,res,next) => {
 });
 
 //add image to spot based on spot id
-router.post('/:spotId/images', async (req, res, next) => {
+router.post('/:spotId/images',requireAuth, async (req, res, next) => {
   const { url, preview } = req.body;
 
   const { user } = req;
@@ -357,7 +357,7 @@ router.post('/:spotId/images', async (req, res, next) => {
 });
 
 //edit a spot based on spot id
-router.put('/:spotId', validateSpot, async(req, res, next) => {
+router.put('/:spotId', validateSpot, requireAuth, async(req, res, next) => {
   const spotId = req.params.spotId;
 
   const { user } = req;
@@ -376,7 +376,7 @@ router.put('/:spotId', validateSpot, async(req, res, next) => {
 });
 
 //delete a spot based on spot id
-router.delete('/:spotId', async (req,res,next) => {
+router.delete('/:spotId', requireAuth, async (req,res,next) => {
   const spotId = req.params.spotId;
 
   console.log(req.params);
@@ -399,7 +399,7 @@ router.delete('/:spotId', async (req,res,next) => {
 
 //creat a review based on spot id
 
-router.post('/:spotId/reviews', validateReview, async (req, res, next) => {
+router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, next) => {
   const { user } = req;
 
   const { review, stars } = req.body;

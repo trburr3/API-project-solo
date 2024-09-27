@@ -3,7 +3,7 @@ const express = require('express')
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const {User,Spot,SpotImage,Review,ReviewImage,Booking} = require("../../db/models");
 
 const { check } = require('express-validator');
@@ -97,7 +97,7 @@ router.get("/current", async (req, res) => {
 
 //add an image to a review based on review id
 
-router.post('/:reviewId/images', async (req, res, next) => {
+router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
   const { user } = req;
 
   const { url } = req.body;
@@ -129,7 +129,7 @@ router.post('/:reviewId/images', async (req, res, next) => {
 
 //edit a review
 
-router.put('/:reviewId', validateReview, async (req, res, next) => {
+router.put('/:reviewId', validateReview, requireAuth, async (req, res, next) => {
   const { user } = req;
 
   const reviewId = req.params.reviewId;
@@ -149,7 +149,7 @@ router.put('/:reviewId', validateReview, async (req, res, next) => {
 
 //delete a review
 
-router.delete('/:reviewId', async (req, res, next) => {
+router.delete('/:reviewId', requireAuth, async (req, res, next) => {
   const reviewId = req.params.reviewId;
 
   const { user } = req;

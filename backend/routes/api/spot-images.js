@@ -3,7 +3,7 @@ const express = require('express')
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const {User,Spot,SpotImage,Review,ReviewImage,Booking} = require("../../db/models");
 
 const { check } = require('express-validator');
@@ -14,25 +14,26 @@ const router = express.Router();
 
 //delete spotImage by image id
 
-router.delete('/:imageId', async ( res, req, next ) => {
+router.delete('/:imageId', requireAuth, async ( req, res, next ) => {
     const { user } = req;
-
-    console.log('PARAMS SHOULD BE HERE:',`\n\n${req.params}\n\n`);
-
-    console.log('URL SHOULD BE HERE',`\n\n${req.url}\n\n`);
 
     const imageId = req.params.imageId;
 
     const image  = await SpotImage.findByPk(imageId);
 
-    const spot = await Spot.findByPk(image.spotId);
+    if( image ) {
 
-    if( image && spot.ownerId === user.id ) {
-        await SpotImage.destroy({
-            where: {imageId}
-        });
+        const spotId = image.spotId;
 
-        return res.json( {message: "Successfully deleted."} );
+        const spot = await Spot.findByPk(spotId);
+
+        if( spot && spot.ownerId === user.id ) {
+            await SpotImage.destroy({
+                where: {id:imageId}
+            });
+
+            return res.json( {message: "Successfully deleted."} );
+        }
     }
 
     return res.status(404).json( {message: "Spot Image couldn't be found"});

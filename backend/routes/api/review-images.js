@@ -3,7 +3,7 @@ const express = require('express')
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const {User,Spot,SpotImage,Review,ReviewImage,Booking} = require("../../db/models");
 
 const { check } = require('express-validator');
@@ -14,25 +14,27 @@ const router = express.Router();
 
 //delete image by review id
 
-router.delete('/:imageId', async ( res, req, next ) => {
+router.delete('/:imageId', requireAuth, async ( req, res, next ) => {
     const { user } = req;
 
     const imageId = req.params.imageId;
 
-    console.log(req.params)
-
     const image  = await ReviewImage.findByPk(imageId);
 
-    console.log(image)
+    if( image ) {
 
-    const review = await Review.findByPk(image.reviewId);
+        const review = await Review.findByPk(image.reviewId);
 
-    if( image && review.userId === user.id ) {
-        await ReviewImage.destroy({
-            where: {imageId}
-        });
+        if(review && review.userId === user.id) {
 
-        return res.json( {message: "Successfully deleted."} );
+            await ReviewImage.destroy({
+                where: {id: imageId}
+            });
+
+            return res.json( {message: "Successfully deleted."} );
+
+        }
+
     }
 
     return res.status(404).json( {message: "Review Image couldn't be found"});

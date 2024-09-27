@@ -3,7 +3,7 @@ const express = require('express')
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const {User,Spot,SpotImage,Review,ReviewImage,Booking} = require("../../db/models");
 
 const { check } = require('express-validator');
@@ -26,7 +26,7 @@ validateBooking = [
 ]
 
 //edit a booking
-router.put('/:bookingId', validateBooking, async (req, res, next) => {
+router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) => {
     const { user } = req;
 
     const { startDate, endDate } = req.body;
@@ -74,7 +74,7 @@ router.delete('/:bookingId', async (req, res, next) => {
     const { user } = req;
 
     const booking = await Booking.findByPk(bookingId);
-    
+
     if (booking && booking.userId === user.id ){
         if(booking.startDate >= new Date()){
             return res.status(403).json( {message: "Bookings that have been started can't be deleted"} );
