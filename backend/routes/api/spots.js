@@ -11,6 +11,8 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+//need to figure out authorization response 
+
 // maybe we need validate
 const validateSpot = [
   check('address')
@@ -165,7 +167,7 @@ router.get("/", async (req, res) => {
 
 
 // Get all Spots owned by the Current User
-router.get("/current", async (req, res) => {
+router.get("/current", requireAuth, async (req, res) => {
     const { user } = req;
 
     try {
@@ -352,6 +354,8 @@ router.post('/:spotId/images',requireAuth, async (req, res, next) => {
 
     return res.status(201).json( newSpotImage );
   }
+
+  if(spot.ownerId !== user.id) return res.status(403).json( {message: "You may only add images to spots you own."} );
 
   return res.status(404).json({message: "Spot couldn't be found"});
 });

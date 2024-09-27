@@ -26,7 +26,7 @@ const validateReview = [
 
 //Get all Reviews of the Current User
 
-router.get("/current", async (req, res) => {
+router.get("/current", requireAuth, async (req, res) => {
 
     const { user } = req;
 
