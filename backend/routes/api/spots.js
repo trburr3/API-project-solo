@@ -411,6 +411,13 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
   const spot = await Spot.findByPk(spotId);
 
   if (spot) {
+    const oldReview = await Review.findOne({
+      where: {userId: user.id}
+    })
+
+    if(oldReview){
+      res.status(500).json( {message: "User already has a review for this spot"} );
+    }
     const newReview = await Review.create({ spotId, userId, review, stars});
 
     return res.status(201).json(newReview)
