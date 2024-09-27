@@ -65,7 +65,7 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
             return res.json(booking);
 
         } else {
-            
+
             return res.status(403).json( {message: "Authorization required."} );
         }
 
@@ -93,7 +93,7 @@ router.delete('/:bookingId', async (req, res, next) => {
             await Booking.destroy({
                 where: {id: bookingId}
             });
-          return res.json( {message: "Successfully deleted."} );
+          return res.json( {message: "Successfully deleted"} );
 
         } else {
 

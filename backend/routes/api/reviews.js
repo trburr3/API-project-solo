@@ -131,7 +131,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
   }
 
-  return res.status(404).json( {message: "Reivew couldn't be found"});
+  return res.status(404).json( {message: "Review couldn't be found"});
 });
 
 //edit a review
@@ -159,7 +159,7 @@ router.put('/:reviewId', validateReview, requireAuth, async (req, res, next) => 
 
   }
 
-  return res.status(404).json( {message: "Reivew couldn't be found"});
+  return res.status(404).json( {message: "Review couldn't be found"});
 });
 
 //delete a review
@@ -179,7 +179,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
         where: {id: reviewId}
       });
 
-      return res.json( {message: "Successfully deleted."} );
+      return res.json( {message: "Successfully deleted"} );
 
     } else {
       return res.status(403).json( {message: "Authorization required."} );
@@ -187,7 +187,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
 
   }
 
-  return res.status(404).json( {message: "Reivew couldn't be found"});
+  return res.status(404).json( {message: "Review couldn't be found"});
 });
 
 // end of this page

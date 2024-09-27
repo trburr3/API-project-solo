@@ -406,7 +406,7 @@ router.delete('/:spotId', requireAuth, async (req,res,next) => {
         where: {id: spotId}
       });
 
-      return res.json( {message: "Successfully deleted."} );
+      return res.json( {message: "Successfully deleted"} );
     } else {
       return res.status(403).json( {message: "Authorization required."} );
     }
