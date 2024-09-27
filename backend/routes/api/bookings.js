@@ -37,8 +37,10 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
 
     const err = new Error('booking conflict');
 
-    if ( booking && booking.userId === user.id ){
-        const startConflict= (booking.startDate === startDate);
+    if ( booking ){
+
+        if( booking.userId === user.id ){
+            const startConflict= (booking.startDate === startDate);
 
         const endConflict = (booking.endDate === endDate);
 
@@ -60,7 +62,13 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
         for(let attribute in req.body){
             booking[attribute] = req.body[attribute];
         }
-            return res.json(booking)
+            return res.json(booking);
+
+        } else {
+            
+            return res.status(403).json( {message: "Authorization required."} );
+        }
+
     }
 
     return res.status(404).json( {message: "Booking couldn't be found"})
@@ -75,14 +83,23 @@ router.delete('/:bookingId', async (req, res, next) => {
 
     const booking = await Booking.findByPk(bookingId);
 
-    if (booking && booking.userId === user.id ){
-        if(booking.startDate >= new Date()){
-            return res.status(403).json( {message: "Bookings that have been started can't be deleted"} );
+    if (booking ){
+
+        if( booking.userId === user.id ){
+
+            if(booking.startDate >= new Date()){
+                return res.status(403).json( {message: "Bookings that have been started can't be deleted"} );
+            }
+            await Booking.destroy({
+                where: {id: bookingId}
+            });
+          return res.json( {message: "Successfully deleted."} );
+
+        } else {
+
+            return res.status(403).json( {message: "Authorization required."} );
         }
-        await Booking.destroy({
-            where: {id: bookingId}
-        });
-      return res.json( {message: "Successfully deleted."} );
+
     }
     return res.status(404).json( {message: "Booking couldn't be found"});
   });

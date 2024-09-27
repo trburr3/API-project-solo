@@ -112,15 +112,22 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     }
   });
 
-  if ( review && review.userId === user.id ) {
+  if ( review ) {
 
-    if (numImages <= 10) {
-      const newReviewImage = await ReviewImage.create({ reviewId, url });
+    if(review.userId === user.id){
 
-      return res.status(201).json(newReviewImage);
+      if (numImages <= 10) {
+        const newReviewImage = await ReviewImage.create({ reviewId, url });
+
+        return res.status(201).json(newReviewImage);
+      }
+
+      return res.status(403).json( {message: "Maximum number of images for this resource was reached"} );
+
+    } else {
+
+      return res.status(403).json( {message: "Authorization required."} );
     }
-
-    return res.status(403).json( {message: "Maximum number of images for this resource was reached"} )
 
   }
 
@@ -136,12 +143,20 @@ router.put('/:reviewId', validateReview, requireAuth, async (req, res, next) => 
 
   const review = await Review.findByPk(reviewId);
 
-  if ( review && review.userId === user.id ) {
-    for(let attribute in req.body ) {
-      review[attribute] = req.body[attribute];
+  if ( review ) {
+    if(review.userId === user.id){
+
+      for(let attribute in req.body ) {
+        review[attribute] = req.body[attribute];
+      }
+
+      return res.json( review );
+
+    } else {
+
+      return res.status(403).json( {message: "Authorization required."} );
     }
 
-    return res.json( review );
   }
 
   return res.status(404).json( {message: "Reivew couldn't be found"});
@@ -156,12 +171,20 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
 
   const review = await Review.findByPk(reviewId);
 
-  if (review && review.userId === user.id ){
-    await Review.destroy({
-      where: {id: reviewId}
-    });
+  if ( review ){
 
-    return res.json( {message: "Successfully deleted."} );
+    if( review.userId === user.id ){
+
+      await Review.destroy({
+        where: {id: reviewId}
+      });
+
+      return res.json( {message: "Successfully deleted."} );
+
+    } else {
+      return res.status(403).json( {message: "Authorization required."} );
+    }
+
   }
 
   return res.status(404).json( {message: "Reivew couldn't be found"});

@@ -11,7 +11,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
-//need to figure out authorization response 
+//need to figure out authorization response
 
 // maybe we need validate
 const validateSpot = [
@@ -349,13 +349,17 @@ router.post('/:spotId/images',requireAuth, async (req, res, next) => {
 
   const spot = await Spot.findByPk(spotId);
 
-  if ( spot && spot.ownerId === user.id ) {
-    const newSpotImage  = await SpotImage.create({ spotId, url, preview });
+  if ( spot ) {
 
-    return res.status(201).json( newSpotImage );
+    if( spot.ownerId === user.id ){
+      const newSpotImage  = await SpotImage.create({ spotId, url, preview });
+
+      return res.status(201).json( newSpotImage );
+    } else {
+      return res.status(403).json( {message: "Authorization required."} );
+    }
+
   }
-
-  if(spot.ownerId !== user.id) return res.status(403).json( {message: "You may only add images to spots you own."} );
 
   return res.status(404).json({message: "Spot couldn't be found"});
 });
@@ -368,10 +372,16 @@ router.put('/:spotId', validateSpot, requireAuth, async(req, res, next) => {
 
   const spot = await Spot.findByPk(spotId);
 
- if ( spot && spot.ownerId === user.id ) {
-  for(let attribute in req.body){
+ if ( spot ) {
+
+  if( spot.ownerId === user.id ){
+    for(let attribute in req.body){
       spot[attribute] = req.body[attribute];
+    }
+  } else {
+    return res.status(403).json( {message: "Authorization required."} );
   }
+
 
   return res.json( spot );
  }
@@ -389,13 +399,18 @@ router.delete('/:spotId', requireAuth, async (req,res,next) => {
 
   const spot = await Spot.findByPk(spotId);
 
-  if ( spot && spot.ownerId === user.id ) {
+  if ( spot ) {
 
-    const spot = await Spot.destroy({
-      where: {id: spotId}
-    });
+    if( spot.ownerId === user.id ){
+      const spot = await Spot.destroy({
+        where: {id: spotId}
+      });
 
-    return res.json( {message: "Successfully deleted."} )
+      return res.json( {message: "Successfully deleted."} );
+    } else {
+      return res.status(403).json( {message: "Authorization required."} );
+    }
+
   };
 
   return res.status(404).json({message: "Spot couldn't be found"});;

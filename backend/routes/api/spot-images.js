@@ -27,12 +27,20 @@ router.delete('/:imageId', requireAuth, async ( req, res, next ) => {
 
         const spot = await Spot.findByPk(spotId);
 
-        if( spot && spot.ownerId === user.id ) {
-            await SpotImage.destroy({
-                where: {id:imageId}
-            });
+        if( spot ) {
 
-            return res.json( {message: "Successfully deleted."} );
+            if( spot.ownerId === user.id ){
+
+                await SpotImage.destroy({
+                    where: {id:imageId}
+                });
+
+                return res.json( {message: "Successfully deleted."} );
+            } else {
+
+                return res.status(403).json( {message: "Authorization required."} );
+            }
+
         }
     }
 

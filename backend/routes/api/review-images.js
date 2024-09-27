@@ -25,13 +25,19 @@ router.delete('/:imageId', requireAuth, async ( req, res, next ) => {
 
         const review = await Review.findByPk(image.reviewId);
 
-        if(review && review.userId === user.id) {
+        if(review ) {
 
-            await ReviewImage.destroy({
-                where: {id: imageId}
-            });
+            if( review.userId === user.id ){
 
-            return res.json( {message: "Successfully deleted."} );
+                await ReviewImage.destroy({
+                    where: {id: imageId}
+                });
+
+                return res.json( {message: "Successfully deleted."} );
+            } else {
+
+                return res.status(403).json( {message: "Authorization required."} );
+            }
 
         }
 
