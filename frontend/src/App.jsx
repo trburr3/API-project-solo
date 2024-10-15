@@ -5,6 +5,10 @@ import { useDispatch } from 'react-redux';
 // import SignupFormPage from './components/SignupFormPage/SignupFormPage';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
+// import * as spotActions from './store/spots';
+// import * as reviewActions from './store/reviews';
+import ListSpots from './components/ListSpots/ListSpots';
+import SpotDetails from './components/SpotDetails/SpotDetails';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -29,8 +33,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h2>Welcome!</h2>
+        element: <ListSpots />
       },
+      {
+        path: 'spots/:spotId',
+        element: <SpotDetails />
+      }
       // {
       //   path: '/login',
       //   element: <LoginFormPage />

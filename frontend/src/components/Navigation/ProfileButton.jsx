@@ -4,7 +4,7 @@ import { logout } from '../../store/session';
 import { useState, useEffect, useRef } from 'react';
 import OpenModalMenuItem from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
-import SignupFormModal from '../SignupFormPage/SignupFormModal';
+import SignupFormModal from '../SignupFormModal/SignupFormModal';
 
 const ProfileButton = ( { user }) => {
     const [showMenu, setShowMenu] = useState(false);

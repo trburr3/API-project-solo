@@ -40,7 +40,7 @@ const Navigation = ({ isLoaded }) => {
             </li>
             {isLoaded && (
                 <li>
-                <ProfileButton user={sessionUser} />
+                <ProfileButton user={user} />
               </li>
             )}
         </ul>

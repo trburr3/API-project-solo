@@ -1,5 +1,8 @@
 // import {createSelector} from 'reselect';
 
+// const currentUser = (store) => store.session;
+// export const getUser = createSelector(currentUser, (session) => session.user);
+
 import { csrfFetch } from "./csrf";
 
 //action-type constants
