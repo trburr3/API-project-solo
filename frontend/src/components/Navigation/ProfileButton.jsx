@@ -2,6 +2,7 @@ import { FaCarrot } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import OpenModalMenuItem from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
@@ -10,6 +11,7 @@ const ProfileButton = ( { user }) => {
     const [showMenu, setShowMenu] = useState(false);
     const dispatch = useDispatch();
     const ulRef = useRef();
+    const navigate = useNavigate();
 
     const toggle = (e) => {
         e.stopPropagation();
@@ -36,6 +38,16 @@ const ProfileButton = ( { user }) => {
       e.preventDefault();
       dispatch(logout());
     };
+
+    const New = (e) => {
+      e.preventDefault();
+      navigate('/spots/new')
+    }
+
+    const Edit = (e) => {
+      e.preventDefault();
+      navigate('/current')
+    }
 
     return (
     <>
@@ -69,6 +81,12 @@ const ProfileButton = ( { user }) => {
           </>
         )}
       </ul>
+      { user ? (
+        <>
+        <button onClick={New}>Create a New Spot</button>
+        <button onClick={Edit}>Manage Spots</button>
+        </>
+      ) : ("") }
     </>
     );
   };

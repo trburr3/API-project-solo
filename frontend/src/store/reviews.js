@@ -57,6 +57,27 @@ export const getSpotReviews = (id) => async dispatch => {
     }
 };
 
+export const createReview = (data, id) => async dispatch => {
+    const res = await csrfFetch(`/api/${id}/reviews`, {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+        })
+
+    if( res.status === 201 || res.ok ){
+        const newReview = await res.json();
+
+        dispatch(single(newReview));
+        return null;
+    } else {
+        const errors = res.errors;
+
+        return errors;
+    }
+};
+
 //reducer
 const reviewsReducer = (state = {}, action) => {
     switch(action.type) {

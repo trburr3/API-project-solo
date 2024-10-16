@@ -221,47 +221,66 @@ router.get("/current", requireAuth, async (req, res) => {
 
 // Get details of a Spot from an id
 router.get('/:spotId', async (req, res) => {
-
-  const { spotId } = req.params;
-
-  try {
-    const spot = await Spot.findByPk(spotId, {
+  const spot = await Spot.findByPk(req.params.spotId, {
+    attributes: {
       include: [
-        {
-          model: SpotImage,
-          attributes: ['id', 'url', 'preview']
-        },
-        {
-          model: User,
-          as: 'Owner',
-          attributes: ['id', 'firstName', 'lastName']
-        }
-      ]
-    });
+        [Sequelize.fn("AVG", Sequelize.col("Reviews.stars")), "avgRating"],
+      ],
+    },
+    include: [
+      {
+        model: Review,
+        attributes: [],
+      },
+      {
+        model: SpotImage,
+        attributes: ['id', 'url', 'preview']
+      },
+      {
+        model: User,
+        as: 'Owner',
+        attributes: ['id', 'firstName', 'lastName']
+      }
+    ],
+    group: ['Spot.id', 'Owner.id', 'SpotImages.id']
+  });
 
-    if (!spot) {
-      return res.status(404).json({ message: "Spot couldn't be found" });
-    }
-
-    const reviews = await Review.findAndCountAll({
-      where: { spotId: spot.id },
-      attributes: [
-        [Sequelize.fn('AVG', Sequelize.col('stars')), 'avgStarRating']
-      ]
-    });
-
-    const avgStarRating = parseFloat(reviews.rows[0].dataValues.avgStarRating).toFixed(1);
-
-    const spotDetails = {
-      ...spot.toJSON(),
-      numReviews: reviews.count,
-      avgStarRating: avgStarRating || null,
-    };
-
-    return res.status(200).json(spotDetails);
-  } catch (err) {
-    return res.status(500).json({ message: 'Error' });
+  if (!spot) {
+    return res.status(404).json({ message: "Spot couldn't be found" });
   }
+
+  const reviewsCount = await Review.count({
+    where: { spotId: spot.id },
+    // attributes: [
+    //   [Sequelize.fn('AVG', Sequelize.col('stars')), 'avgStarRating']
+    // ]
+  });
+  spot.dataValues.numReviews = reviewsCount;
+ // const avgStarRating = parseFloat(reviews.rows[0].dataValues.avgStarRating).toFixed(1);
+
+ const spotDetails = {
+  id: spot.id,
+  ownerId: spot.ownerId,
+  address: spot.address,
+  city: spot.city,
+  state: spot.state,
+  country: spot.country,
+  lat: spot.lat,
+  lng: spot.lng,
+  name: spot.name,
+  description: spot.description,
+  price: spot.price,
+  createdAt: spot.createdAt,
+  updatedAt: spot.updatedAt,
+  numReviews: spot.dataValues.numReviews,
+  avgStarRating: spot.dataValues.avgRating ? parseFloat(spot.dataValues.avgRating).toFixed(1) : "No rating yet.",
+  SpotImages: spot.SpotImages,
+  Owner: spot.Owner
+};
+
+return res.status(200).json(spotDetails);
+
+
 });
 
 
@@ -291,6 +310,7 @@ router.get("/:spotId/reviews", async (req, res) => {
 
   return res.status(200).json({ Reviews: reviews });
 });
+
 
 // test
 // {

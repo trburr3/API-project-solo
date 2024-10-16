@@ -78,43 +78,43 @@ export const singleSpot = (id) => async dispatch => {
     }
 };
 
-// export const signUp = (data) => async dispatch => {
-//     const res = await csrfFetch('/api/users', {
-//         method: 'POST',
-//         headers:{
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(data)
-//     })
+export const signUp = (data) => async dispatch => {
+    const res = await csrfFetch('/api/users', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
 
-//     if( res.status === 201 || res.ok ){
-//         const user = await res.json();
+    if( res.status === 201 || res.ok ){
+        const user = await res.json();
 
-//         dispatch(load(user));
-//         return null;
-//     } else {
-//         const errors = res.errors;
+        dispatch(load(user));
+        return null;
+    } else {
+        const errors = res.errors;
 
-//         return errors;
-//     }
-// };
+        return errors;
+    }
+};
 
-// export const logout = (user) => async dispatch => {
-//     const res = await csrfFetch('/api/session',{
-//         method: 'DELETE',
-//     })
+export const deleteSpot = (id) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${id}`,{
+        method: 'DELETE',
+    })
 
-//     if ( res.ok ) {
-//         // const user = await res.json();
+    if ( res.ok ) {
+        // const user = await res.json();
 
-//         dispatch(remove());
-//         return res;
-//     } else {
-//         const errors = res.errors;
+        dispatch(remove(id));
+        return res;
+    } else {
+        const errors = res.errors;
 
-//         return errors;
-//     }
-// };
+        return errors;
+    }
+};
 
 //reducer
 const spotsReducer = (state = {}, action) => {
