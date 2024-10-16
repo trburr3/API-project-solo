@@ -1,8 +1,6 @@
 //custom selector
 import {createSelector} from 'reselect';
 
-// const selectSpots = (store) => store.spots;
-// export const getSpots = createSelector(currentUser, (spots) => Object.values(spots));
 export const getSpots = createSelector(
     (state) => state.spots,
     (allSpots) => Object.values(allSpots)
@@ -13,7 +11,7 @@ import { csrfFetch } from "./csrf";
 
 //action-type constants
 const LOAD_SPOTS = 'session/LOAD_SPOTS';
-const SINGLE_SPOT = 'session/SINGLE_SPOT';
+const RECEIVE_SPOT = 'session/RECEIVE_SPOT';
 const REMOVE_SPOT = 'session/REMOVE_SPOT';
 const UPDATE_SPOT = 'session/UPDATE_SPOT'
 
@@ -23,8 +21,8 @@ export const load = (spots) => ({
     spots
 });
 
-export const single = (spot) => ({
-    type: SINGLE_SPOT,
+export const receive = (spot) => ({
+    type: RECEIVE_SPOT,
     spot
 });
 
@@ -67,7 +65,7 @@ export const singleSpot = (id) => async dispatch => {
         // console.log('I AM IN THUNK')
         const info = await res.json();
 
-        dispatch(single(info));
+        dispatch(receive(info));
         return info;
     } else {
         const errors = res.errors;
@@ -127,10 +125,8 @@ const spotsReducer = (state = {}, action) => {
             });
             return spotState;
         }
-        case SINGLE_SPOT:
-            {const newState = { ...state, [action.spot.id]: action.spot };
-            // console.log('BEFORE ----> \n\n\n',state, 'AFTER ---> \n\n\n\n', newState)
-            return newState}
+        case RECEIVE_SPOT:
+            return { ...state, [action.spot.id]: action.spot }
         case UPDATE_SPOT:
             return { ...state, [action.spot.id]: action.spot };
         case REMOVE_SPOT:{

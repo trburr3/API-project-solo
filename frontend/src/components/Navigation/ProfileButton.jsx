@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FaCarrot } from 'react-icons/fa6';
 import { logout } from '../../store/session';
-// import { useNavigate } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
@@ -12,9 +11,6 @@ const ProfileButton = ( { user } ) => {
 
     const dispatch = useDispatch();
     const ulRef = useRef();
-    // const navigate = useNavigate();
-
-    // const sessionUser = user.user
 
     const toggle = (e) => {
         e.stopPropagation();
@@ -55,8 +51,6 @@ const ProfileButton = ( { user } ) => {
 
     const ulClassName = "profile-dropdown" + (showMenu ? "" : "hidden");
 
-    console.log('MENU STATUS -->', showMenu)
-
     return (
     <>
       {/* <div style={{ color: "orange", fontSize: "100px" }}> */}
@@ -88,13 +82,17 @@ const ProfileButton = ( { user } ) => {
             />
           </>
         )}
+         { user ? (
+            <>
+            <li>
+            <button onClick={New}>Create a New Spot</button>
+            </li>
+            <li>
+            <button onClick={Edit}>Manage Spots</button>
+            </li>
+            </>
+        ) : ("") }
       </ul>
-      { user ? (
-        <>
-        <button onClick={New}>Create a New Spot</button>
-        <button onClick={Edit}>Manage Spots</button>
-        </>
-      ) : ("") }
     </>
     );
   };

@@ -24,7 +24,7 @@ const ListSpots = () => {
                 </Tooltip>
             <div className="li-spot-image">
             <img
-                src={spot.previewImage}
+                src={"https://img.freepik.com/free-photo/3d-house-model-with-modern-architecture_23-2151004049.jpg"}
                 alt={spot.name} />
             </div>
             <div className="li-spot-description">

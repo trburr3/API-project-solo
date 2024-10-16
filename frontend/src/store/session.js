@@ -1,15 +1,17 @@
 // import {createSelector} from 'reselect';
 
-// const currentUser = (store) => store.session;
-// export const getUser = createSelector(currentUser, (session) => session.user);
+// export const getUser = createSelector(
+//     (state) => state.session,
+//     (session) => session.user
+// )
 
 import { csrfFetch } from "./csrf";
 
 //action-type constants
 const SET_USER = 'session/SET_USER ';
-const RESTORE_USER = 'session/RESTORE_USER';
+// const RESTORE_USER = 'session/RESTORE_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const UPDATE_USER = 'session/UPDATE_USER'
+// const UPDATE_USER = 'session/UPDATE_USER'
 
 //action-creators
 export const set = (user) => ({
@@ -26,10 +28,10 @@ export const remove = () => ({
     type: REMOVE_USER,
 });
 
-export const update = (user) => ({
-    type: UPDATE_USER,
-    user
-});
+// export const update = (user) => ({
+//     type: UPDATE_USER,
+//     user
+// });
 
 //thunk actions
 export const login = (credentials) => async dispatch => {
@@ -106,24 +108,13 @@ export const logout = (user) => async dispatch => {
     }
 };
 
-//selectors
-
-//normalizer
-
 //reducer
 const sessionReducer = (state = { user: null }, action) => {
     switch(action.type) {
         case SET_USER:{
-            // const sessionState = {...state};
-            // console.log('DO I MAKE IT ?', action.user)
-            // sessionState.user = action.user;
-            // return sessionState;
             return { ...state, user: action.user };
         }
         case REMOVE_USER:{
-            // const sessionState = {...state, user: null}
-            // delete sessionState[action.userId];
-            // return sessionState
             return { ...state, user: null };
         }
         default:

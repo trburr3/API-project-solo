@@ -9,7 +9,7 @@ const Reviews = ({ spot, owner }) => {
 
     const reviews = useSelector(reviewActions.getReviews);
 
-    console.log('I HAVE HIT THE REVIEW COMP',reviews)
+    // console.log('I HAVE HIT THE REVIEW COMP',reviews)
 
     const user = useSelector(state => Object.values(state.session.user))[0]
 
@@ -17,7 +17,7 @@ const Reviews = ({ spot, owner }) => {
 
     const info = {firstName, id, lastName}
 
-    console.log('I HAVE MADE IT', info === owner) //false cant access owner consistently
+    console.log('AM I THE OWNER?', info === owner) //false cant access owner consistently
 
     const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ const Reviews = ({ spot, owner }) => {
             <div className="li-review-text">
                 <p>Posted by: {review.User.firstName}</p>
                 <p>{review.review}</p>
-                {user ?(
+                {user === info ?(
                 <OpenModalButton
                 buttonText="Delete"
                 onButtonClick
