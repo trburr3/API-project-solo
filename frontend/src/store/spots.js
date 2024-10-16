@@ -78,8 +78,8 @@ export const singleSpot = (id) => async dispatch => {
     }
 };
 
-export const signUp = (data) => async dispatch => {
-    const res = await csrfFetch('/api/users', {
+export const editSpot = (data ,id) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${id}`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -88,9 +88,9 @@ export const signUp = (data) => async dispatch => {
     })
 
     if( res.status === 201 || res.ok ){
-        const user = await res.json();
+        const newSpot = await res.json();
 
-        dispatch(load(user));
+        dispatch(update(newSpot));
         return null;
     } else {
         const errors = res.errors;

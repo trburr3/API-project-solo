@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as spotActions from '../../store/spots';
+import DeleteSpotModal from '../DeleteSpotModal/DeleteSpotModal.jsx';
+import OpenModalMenuItem from '../OpenModalButton/OpenModalButton';
 
 const ManageSpotItem = ({ spot }) => {
   const dispatch = useDispatch();
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-
-    dispatch(spotActions.deleteSpot(spot.id));
-  };
 
   return (
     // thumbnail image, location, rating, price
@@ -27,7 +23,11 @@ const ManageSpotItem = ({ spot }) => {
         >
         Edit
         </Link>
-        <button onClick={handleDelete}>Delete</button>
+        <OpenModalMenuItem
+              itemText="Delete"
+              onItemClick
+              modalComponent={<DeleteSpotModal />}
+            />
       </div>
       </div>
     </li>

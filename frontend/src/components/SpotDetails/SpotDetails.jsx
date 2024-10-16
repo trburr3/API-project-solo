@@ -96,7 +96,7 @@ const SpotDetails = () => {
                     />
                 ) : ("")}
                 <ul>
-                <Reviews spot={spot} />
+                <Reviews spot={spot} owner={spotOwner} />
                 </ul>
             </div>
         </div>

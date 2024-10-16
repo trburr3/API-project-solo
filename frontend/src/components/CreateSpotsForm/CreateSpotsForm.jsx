@@ -44,8 +44,8 @@ const CreateSpotsForm = ({ spot }) => {
         address,
         city,
         state,
-        latitude,
-        longitude
+        lat: latitude,
+        lng: longitude
      };
     // console.log('THUNK AGAIN !!')
     const newSpot = await dispatch(createSpot(spot))

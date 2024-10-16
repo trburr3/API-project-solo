@@ -1,11 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as reviewActions from '../../store/reviews';
+import OpenModalMenuItem from '../OpenModalButton/OpenModalButton';
+import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";
 
-const Reviews = ({ spot }) => {
+const Reviews = ({ spot, owner }) => {
+    const [authorized, setAuthorized] = useState(false);
+
     const reviews = useSelector(reviewActions.getReviews);
 
     console.log('I HAVE HIT THE REVIEW COMP',reviews)
+
+    const user = useSelector(state => Object.values(state.session.user))[0]
+
+    const {firstName, id, lastName} = user
+
+    const info = {firstName, id, lastName}
+
+    console.log('I HAVE MADE IT', info === owner) //false cant access owner consistently
 
     const dispatch = useDispatch();
 
@@ -19,12 +31,19 @@ const Reviews = ({ spot }) => {
         <div className="li-review-container">
             <div className="review-image-container">
             {review.ReviewImages.map((image) =>
-                <img src={image.url} alt={image.id} />
+                <img src={image.url} alt={image.id} key={image.id}/>
             )}
             </div>
             <div className="li-review-text">
                 <p>Posted by: {review.User.firstName}</p>
                 <p>{review.review}</p>
+                {user ?(
+                <OpenModalMenuItem
+                itemText="Delete"
+                onItemClick
+                modalComponent={<DeleteReviewModal />}
+                />
+                ) : ("")}
                 <br />
                 <p>{review.createdAt}</p>
             </div>
