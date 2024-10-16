@@ -3,32 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { getSpots } from "../../store/spots";
 import * as spotActions from '../../store/spots';
-// import IndexItem from "./IndexItem";
+import { Tooltip } from 'react-tooltip';
 
 const ListSpots = () => {
     const dispatch = useDispatch();
 
     const spots = useSelector(getSpots);
 
-    // const spotsList = useSelector(state => state.spots)
-
-    // console.log('\n\n ARE WE HERE YET? \n\n', spots[0])
-
-    // console.log('IN THE LIST COMP')
-
     useEffect(() => {
-        'THUNK DISPATCHED'
         dispatch(spotActions.getAllSpots());
-        // console.log(spots)
     }, [dispatch]);
 
-    const spotItems = spots.map((spot, index) =>
+    const spotItems = spots.map((spot) =>
         <>
-    {/* { console.log('AM I BEING MAPPED OVER',spot.id)} */}
-        <li key={index}>
+        <li key={spot.id}>
         <div className="li-spot-container" >
-            <Link to={`/spots/${spot.id}`} >
+            <Link className={`link-comp-${spot.id}`}to={`/spots/${spot.id}`} >
+                <Tooltip anchorSelect={`.link-comp-${spot.id}`} place="top">
                 {spot.name}
+                </Tooltip>
             <div className="li-spot-image">
             <img
                 src={spot.previewImage}
@@ -39,7 +32,7 @@ const ListSpots = () => {
                     {spot.city}, {spot.state}
                 </h2>
                 <h3>
-                    {spot.avgRating}
+                    {spot.avgRating === "No rating yet." ? ("New") : (spot.avgRating)}
                 </h3>
                 <h4>
                     ${spot.price}/night

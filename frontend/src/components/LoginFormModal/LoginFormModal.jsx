@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
-import { useModal } from "../context/Modal";
+import { useModal } from "../../context/Modal";
 import './LoginForm.css';
 
 const LoginFormModal = () => {
@@ -11,7 +11,7 @@ const LoginFormModal = () => {
 
     const { closeModal } = useModal();
 
-    const user  =  useSelector(state => state.session.user)
+    const user  =  useSelector(state => state.session.user) //am i being used?
 
     const dispatch = useDispatch();
 
@@ -62,7 +62,7 @@ const LoginFormModal = () => {
             <div className="errors">{errors.statusText}</div>
             {/* <div className="errors">{errors.username || errors.email}</div> */}
             <label>
-                Username:
+                Username or Email:
                 <input
                 type="text"
                 value={credential}

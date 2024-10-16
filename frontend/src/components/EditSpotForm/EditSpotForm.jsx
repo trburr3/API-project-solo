@@ -6,6 +6,7 @@ import * as spotActions from '../../store/spots';
 const EditSpotForm = () => {
   const spotId = useParams().spotId;
   const spot = useSelector(spotActions.getSpots)[spotId-1]
+  
   const navigate = useNavigate();
   const [country, setCountry] = useState(spot?.country);
   const [address, setAddress] = useState(spot?.address);
@@ -46,7 +47,7 @@ const EditSpotForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
-    spot = {
+    const data = {
         country,
         address,
         city,
@@ -55,7 +56,7 @@ const EditSpotForm = () => {
         lng: longitude
      };
     // console.log('THUNK AGAIN !!')
-    const newSpot = await dispatch(editSpot(spot, spotId))
+    const newSpot = await dispatch(editSpot(data, spotId))
     // console.log('IM YOUR NEW SPOT', newSpot)
     reset();
     navigate(`/spots/${newSpot.id}`);

@@ -5,7 +5,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
-import {  Modal, ModalProvider } from './components/context/Modal';
+import { Modal, ModalProvider } from './context/Modal';
 import * as sessionActions from './store/session';
 import * as spotActions from './store/spots';
 import * as reviewActions from './store/reviews';

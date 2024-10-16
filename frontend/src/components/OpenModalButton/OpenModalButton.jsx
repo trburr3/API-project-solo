@@ -1,11 +1,11 @@
 import React from 'react';
-import { useModal } from '../context/Modal';
+import { useModal } from '../../context/Modal';
 
 
-function OpenModalMenuItem({
+function OpenModalButton({
   modalComponent,
-  itemText,
-  onItemClick,
+  buttonText,
+  onButtonClick,
   onModalClose
 }) {
   const { setModalContent, setOnModalClose } = useModal();
@@ -13,12 +13,12 @@ function OpenModalMenuItem({
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
-    if (typeof onItemClick === "function") onItemClick();
+    if (typeof onButtonClick === "function") onButtonClick();
   };
 
   return (
-    <li onClick={onClick}>{itemText}</li>
+    <button onClick={onClick}>{buttonText}</button>
   );
 }
 
-export default OpenModalMenuItem;
+export default OpenModalButton;

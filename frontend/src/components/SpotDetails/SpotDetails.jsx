@@ -4,7 +4,7 @@ import * as spotActions from '../../store/spots';
 import { useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import Reviews from "../Reviews/Reviews";
-import OpenModalMenuItem from "../OpenModalButton/OpenModalButton";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import ReviewFormModal from "../ReviewFormModal/ReviewFormModal";
 
 const SpotDetails = () => {
@@ -88,10 +88,10 @@ const SpotDetails = () => {
             </div>
             <div className="review-container">
                 {user && isValid ? (
-                    <OpenModalMenuItem
-                    itemText="Post Your Review"
+                    <OpenModalButton
+                    buttonText="Post Your Review"
                     modalComponent={<ReviewFormModal spot={spot}/>}
-                    onItemClick
+                    onButtonClick
                     onModalClose
                     />
                 ) : ("")}

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as spotActions from '../../store/spots';
 import DeleteSpotModal from '../DeleteSpotModal/DeleteSpotModal.jsx';
-import OpenModalMenuItem from '../OpenModalButton/OpenModalButton';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 
 const ManageSpotItem = ({ spot }) => {
   const dispatch = useDispatch();
@@ -23,9 +23,9 @@ const ManageSpotItem = ({ spot }) => {
         >
         Edit
         </Link>
-        <OpenModalMenuItem
-              itemText="Delete"
-              onItemClick
+        <OpenModalButton
+              buttonText="Delete"
+              onButtonClick
               modalComponent={<DeleteSpotModal />}
             />
       </div>

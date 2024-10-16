@@ -10,7 +10,7 @@ export function ModalProvider({ children }){
 
     const modalRef = useRef();
 
-    const modalClose = () => {
+    const closeModal = () => {
         setModalContent(null);
 
         if( typeof onModalClose === 'function' ) {
@@ -24,7 +24,7 @@ export function ModalProvider({ children }){
         modalContent,
         setModalContent,
         setOnModalClose,
-        modalClose
+        closeModal
     };
 
     return(

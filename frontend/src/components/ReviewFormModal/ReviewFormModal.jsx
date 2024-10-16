@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../context/Modal";
+import { useModal } from "../../context/Modal";
 import * as reviewActions from '../../store/reviews';
 import StarRatingInput from "../StarInput/StarInput";
 

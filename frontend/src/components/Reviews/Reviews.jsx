@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import * as reviewActions from '../../store/reviews';
-import OpenModalMenuItem from '../OpenModalButton/OpenModalButton';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";
 
 const Reviews = ({ spot, owner }) => {
@@ -38,9 +38,9 @@ const Reviews = ({ spot, owner }) => {
                 <p>Posted by: {review.User.firstName}</p>
                 <p>{review.review}</p>
                 {user ?(
-                <OpenModalMenuItem
-                itemText="Delete"
-                onItemClick
+                <OpenModalButton
+                buttonText="Delete"
+                onButtonClick
                 modalComponent={<DeleteReviewModal />}
                 />
                 ) : ("")}

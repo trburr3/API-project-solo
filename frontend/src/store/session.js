@@ -6,21 +6,21 @@
 import { csrfFetch } from "./csrf";
 
 //action-type constants
-const LOAD_USER = 'session/LOAD_USER ';
+const SET_USER = 'session/SET_USER ';
 const RESTORE_USER = 'session/RESTORE_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const UPDATE_USER = 'session/UPDATE_USER'
 
 //action-creators
-export const load = (user) => ({
-    type: LOAD_USER,
+export const set = (user) => ({
+    type: SET_USER,
     user
 });
 
-export const restore = (user) => ({
-    type: RESTORE_USER,
-    user
-});
+// export const restore = (user) => ({
+//     type: RESTORE_USER,
+//     user
+// });
 
 export const remove = () => ({
     type: REMOVE_USER,
@@ -42,10 +42,10 @@ export const login = (credentials) => async dispatch => {
     })
 
     if( res.status === 200 ){
-        const user = await res.json();
+        const data = await res.json();
 
-        dispatch(load(user));
-        return null;
+        dispatch(set(data.user));
+        return res;
     } else {
         const errors = res.errors;
 
@@ -57,10 +57,10 @@ export const restoreUser = () => async dispatch => {
     const res = await csrfFetch('/api/session')
 
     if ( res.status === 200 ) {
-        const user = await res.json();
+        const data = await res.json();
 
-        dispatch(load(user));
-        return null;
+        dispatch(set(data.user));
+        return res;
     } else {
         const errors = res.errors;
 
@@ -113,16 +113,18 @@ export const logout = (user) => async dispatch => {
 //reducer
 const sessionReducer = (state = { user: null }, action) => {
     switch(action.type) {
-        case LOAD_USER:{
-            const sessionState = {};
+        case SET_USER:{
+            // const sessionState = {...state};
             // console.log('DO I MAKE IT ?', action.user)
-            sessionState.user = action.user;
-            return sessionState;
+            // sessionState.user = action.user;
+            // return sessionState;
+            return { ...state, user: action.user };
         }
         case REMOVE_USER:{
-            const sessionState = {...state, user: null}
+            // const sessionState = {...state, user: null}
             // delete sessionState[action.userId];
-            return sessionState
+            // return sessionState
+            return { ...state, user: null };
         }
         default:
             return state

@@ -1,17 +1,20 @@
-import { FaCarrot } from 'react-icons/fa6';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../store/session';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import OpenModalMenuItem from '../OpenModalButton/OpenModalButton';
+import { useDispatch } from 'react-redux';
+import { FaCarrot } from 'react-icons/fa6';
+import { logout } from '../../store/session';
+// import { useNavigate } from 'react-router-dom';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 
-const ProfileButton = ( { user }) => {
+const ProfileButton = ( { user } ) => {
     const [showMenu, setShowMenu] = useState(false);
+
     const dispatch = useDispatch();
     const ulRef = useRef();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+
+    // const sessionUser = user.user
 
     const toggle = (e) => {
         e.stopPropagation();
@@ -22,7 +25,7 @@ const ProfileButton = ( { user }) => {
         if(!showMenu) return ;
 
         const closeMenu = (e) => {
-            if (ulRef.current && !ulRef.current.contains(e.target)) {
+            if (!ulRef.current.contains(e.target)) {
               setShowMenu(false);
             }
           };
@@ -37,17 +40,22 @@ const ProfileButton = ( { user }) => {
     const Logout = (e) => {
       e.preventDefault();
       dispatch(logout());
+      closeMenu();
     };
 
     const New = (e) => {
       e.preventDefault();
       navigate('/spots/new')
-    }
+    };
 
     const Edit = (e) => {
       e.preventDefault();
       navigate('/current')
-    }
+    };
+
+    const ulClassName = "profile-dropdown" + (showMenu ? "" : "hidden");
+
+    console.log('MENU STATUS -->', showMenu)
 
     return (
     <>
@@ -56,7 +64,7 @@ const ProfileButton = ( { user }) => {
         <FaCarrot />
       {/* </div> */}
       </button>
-      <ul className={"profile-dropdown" + ( showMenu ? "" : "hidden" )} ref={ulRef}>
+      <ul className={ulClassName} hidden={!showMenu} ref={ulRef}>
       { user ? (
           <>
             <li>{user.username}</li>
@@ -68,14 +76,14 @@ const ProfileButton = ( { user }) => {
           </>
         ) : (
           <>
-            <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
+            <OpenModalButton
+              buttonText="Log In"
+              onButtonClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
-            <OpenModalMenuItem
-              itemText="Sign Up"
-              onItemClick={closeMenu}
+            <OpenModalButton
+              buttonText="Sign Up"
+              onButtonClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
           </>
