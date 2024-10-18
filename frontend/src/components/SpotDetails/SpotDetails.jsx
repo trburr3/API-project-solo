@@ -11,47 +11,60 @@ const SpotDetails = () => {
 
     const [isValid, setIsValid] = useState(false);
 
-    // console.log('HELLO FROM SPOT DETAILS')
-
     const { spotId } = useParams();
-
-    const spot = useSelector(spotActions.getSpots)[spotId-1]
-
-    const spotOwner = spot.Owner;
-
-    console.log('HAVE I LOADED --> ',spotOwner)
-
-    const user  = useSelector( (state) => state.session.user );
-
-    if ( user && user.id !== spot.ownerId) setIsValid(true);
 
     useEffect(() => {
         dispatch(spotActions.singleSpot(spotId))
         // console.log('HI IM THE OWNER', spot.Owner)
     }, [dispatch, spotId]);
 
+    // console.log('HELLO FROM SPOT DETAILS')
+
+    const user  = useSelector( (state) => state.session.user );
+
+    const spot = useSelector(spotActions.getSpots)[0];
+
+    // const spots = useSelector(spotActions.getSpots)
+
+    // console.log(spots)
+
+   if(spot){
+
+    // const spot = useSelector(spotActions.getSpots)[0];
+
+    const spotOwner = spot.Owner;
+
+    // console.log('HAVE I LOADED --> ',spotOwner);
+
+    // if ( user && user.id !== spotOwner?.id) setIsValid(true);
+
     return (
+        // <h1>HELLO WORLDDD</h1>
     <>
-    <h1>{spot.name}</h1>
+    <h1>{spot?.name}</h1>
+    <h2>Location: {spot?.address}, {spot?.city}, {spot?.state}, {spot?.country}</h2>
     <div className="spot-details-container">
 
-            <img src={spot.previewImage} alt={spot.name} />
+            <img src="https://img.freepik.com/free-photo/3d-render-house-countryside_1048-13116.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt={spot.name} />
             <div className="spot-images">
-                <img src="https://unsplash.com/photos/a-man-walking-down-a-dirt-road-in-the-woods-u4l1BUrNWZU" alt="placeholder"/>
-                <img src="https://unsplash.com/photos/a-woman-reading-a-book-in-front-of-a-bookcase-_6lV0DA59uU" alt="placeholder" />
-                <img src="https://unsplash.com/photos/a-cat-sitting-on-the-ground-in-front-of-a-blue-building-8oU3VWkHgL8" alt="placeholder" />
-                <img src="https://unsplash.com/photos/a-person-holding-a-bunch-of-oranges-in-their-hands-qyFbjf1lNHM" alt="placeholder" />
-                <img src="https://unsplash.com/photos/a-red-flower-sitting-on-top-of-a-white-sign-23MWvUzmUuE" alt="placeholder" />
+                <img className="image1" src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder"/>
+                <img src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
+                <img src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
+                <img src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
+                <img src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
             </div>
             <div className="spot-info">
-                <h2>Hosted by: {spotOwner.firstName} {spotOwner.lastName}</h2>
-                <h2>Hosted by: {spot.ownerId}</h2>
-                <h2>Location: {spot.address}, {spot.city}, {spot.state}, {spot.country}</h2>
-                <h3>{spot.description}</h3>
+                {/* { spotOwner ?
+                (<h2>Hosted by: {spotOwner?.firstName} {spotOwner?.lastName}</h2>) :
+                (<h2>Hosted by: {spot?.ownerId}</h2>)
+                } */}
+                <h2>Hosted by: {spot?.ownerId}</h2>
+                <h3>{spot?.description}</h3>
             </div>
             <div className="info-box">
-                <h4>${spot.price}/night</h4>
-                <button onClick={() => alert('Feature comming soon!')}>Reserve</button>
+                <h4>${spot?.price}/night</h4>
+                <h4>{spot?.avgRating}</h4>
+                <button className="reserve" onClick={() => alert('Feature comming soon!')}>Reserve</button>
             </div>
             <div className="review-container">
                 {user && isValid ? (
@@ -63,12 +76,24 @@ const SpotDetails = () => {
                     />
                 ) : ("")}
                 <ul>
-                <Reviews spot={spot} owner={spotOwner} />
+                <Reviews spot={spot} owner user={user} />
                 </ul>
             </div>
         </div>
     </>
     )
+
+}
+
+return (
+    <h1>NO SPOT FOUND</h1>
+)
+
+
+
+
+
+
 };
 
 export default SpotDetails;

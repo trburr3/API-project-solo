@@ -7,15 +7,20 @@ import { useEffect } from 'react';
 const ManageSpots = () => {
   const dispatch = useDispatch();
 
-  console.log('I AM IN THE COMP')
+  useEffect(() => {
+    // console.log('I AM CALLING THE THUNK')
+    dispatch(spotActions.getAllSpots());
+  }, [dispatch])
+
+  // console.log('I AM IN THE COMP')
 
   const spots = useSelector(spotActions.getSpots);
 
-  console.log('ALL SPOTS  ----> ', spots)
+  // console.log('ALL SPOTS  ----> ', spots)
 
-  const user = useSelector(state => state.session.user).user
+  const user = useSelector(state => state.session.user)
 
-  console.log('IS ANYONE HERE?', user.id)
+  // console.log('IS ANYONE HERE?', user.id)
 
   const userSpots = []
 
@@ -23,14 +28,8 @@ const ManageSpots = () => {
     if(spot.ownerId === user.id) userSpots.push(spot);
   })
 
-  console.log('MY SPOTS ----> ', userSpots)
+  // console.log('MY SPOTS ----> ', userSpots)
 
-  useEffect(() => {
-    // console.log('I AM CALLING THE THUNK')
-    dispatch(spotActions.getAllSpots());
-  }, [dispatch])
-
-  /* **DO NOT CHANGE THE RETURN VALUE** */
   return (
     <section>
       <ul>

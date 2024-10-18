@@ -76,6 +76,27 @@ export const singleSpot = (id) => async dispatch => {
     }
 };
 
+export const createSpot = (data) => async dispatch => {
+    const res = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+
+    if( res.status === 201 || res.ok ){
+        const spot = await res.json();
+
+        dispatch(receive(spot));
+        return spot;
+    } else {
+        const errors = res.errors;
+
+        return errors;
+    }
+};
+
 export const editSpot = (data ,id) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${id}`, {
         method: 'POST',
@@ -89,7 +110,7 @@ export const editSpot = (data ,id) => async dispatch => {
         const newSpot = await res.json();
 
         dispatch(update(newSpot));
-        return null;
+        return newSpot;
     } else {
         const errors = res.errors;
 

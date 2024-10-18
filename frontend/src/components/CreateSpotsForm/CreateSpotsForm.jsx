@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import * as spotActions from '../../store/spots'
 
 const CreateSpotsForm = ({ spot }) => {
   const navigate = useNavigate();
@@ -45,11 +46,16 @@ const CreateSpotsForm = ({ spot }) => {
         city,
         state,
         lat: latitude,
-        lng: longitude
+        lng: longitude,
+        name,
+        price,
+        description,
+        preview,
+        images
      };
     // console.log('THUNK AGAIN !!')
-    const newSpot = await dispatch(createSpot(spot))
-    // console.log('IM YOUR NEW SPOT', newSpot)
+    const newSpot = await dispatch(spotActions.createSpot(spot))
+    console.log('IM YOUR NEW SPOT', newSpot)
     reset();
     navigate(`/spots/${newSpot.id}`);
   };

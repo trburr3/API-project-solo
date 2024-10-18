@@ -1,16 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaCarrot } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
+import { TbBrandMinecraft } from "react-icons/tb";
+import { FiMenu } from "react-icons/fi";
 import { logout } from '../../store/session';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import './Navigation.css';
 
 const ProfileButton = ( { user } ) => {
     const [showMenu, setShowMenu] = useState(false);
 
     const dispatch = useDispatch();
     const ulRef = useRef();
+    const navigate = useNavigate();
 
     const toggle = (e) => {
         e.stopPropagation();
@@ -54,8 +58,9 @@ const ProfileButton = ( { user } ) => {
     return (
     <>
       {/* <div style={{ color: "orange", fontSize: "100px" }}> */}
-      <button onClick={toggle}>
-        <FaCarrot />
+      <button onClick={toggle} className='menu-button'>
+      <FiMenu className="menu"/>
+        <TbBrandMinecraft className='menu-symbol'/>
       {/* </div> */}
       </button>
       <ul className={ulClassName} hidden={!showMenu} ref={ulRef}>
@@ -65,7 +70,7 @@ const ProfileButton = ( { user } ) => {
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
             <li>
-              <button onClick={Logout}>Log Out</button>
+              <button onClick={Logout} id="menu-button-1">Log Out</button>
             </li>
           </>
         ) : (
@@ -73,11 +78,13 @@ const ProfileButton = ( { user } ) => {
             <OpenModalButton
               buttonText="Log In"
               onButtonClick={closeMenu}
+              id="menu-button-1"
               modalComponent={<LoginFormModal />}
             />
             <OpenModalButton
               buttonText="Sign Up"
               onButtonClick={closeMenu}
+              id="menu-button-2"
               modalComponent={<SignupFormModal />}
             />
           </>
@@ -85,10 +92,10 @@ const ProfileButton = ( { user } ) => {
          { user ? (
             <>
             <li>
-            <button onClick={New}>Create a New Spot</button>
+            <button onClick={New} id="menu-button-2">Create a New Spot</button>
             </li>
             <li>
-            <button onClick={Edit}>Manage Spots</button>
+            <button onClick={Edit} id="menu-button-3">Manage Spots</button>
             </li>
             </>
         ) : ("") }

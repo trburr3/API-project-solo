@@ -11,17 +11,17 @@ if (process.env.NODE_ENV === 'production') {
 const SpotImages = [
   {
     spotId: 1,
-    url: "https://pixabay.com/zh/photos/mountain-volcano-peak-summit-477832/",
+    url: "https://img.freepik.com/free-photo/hand-presenting-model-house-home-loan-campaign_53876-104970.jpg?t=st=1729119387~exp=1729122987~hmac=4bc1f05cf40ad07092dea56a3d9b4a34cdb4ccab636588305237f3c3e4588e1c&w=2000",
     preview: true
   },
   {
     spotId: 2,
-    url: "https://pixabay.com/zh/photos/mountains-sunlight-alps-nature-6753786/",
+    url: "https://img.freepik.com/free-photo/hand-presenting-model-house-home-loan-campaign_53876-104970.jpg?t=st=1729119387~exp=1729122987~hmac=4bc1f05cf40ad07092dea56a3d9b4a34cdb4ccab636588305237f3c3e4588e1c&w=2000",
     preview: false
   },
   {
     spotId: 3,
-    url: "https://pixabay.com/zh/photos/lake-forest-trees-woods-water-4591082/",
+    url: "https://img.freepik.com/free-photo/hand-presenting-model-house-home-loan-campaign_53876-104970.jpg?t=st=1729119387~exp=1729122987~hmac=4bc1f05cf40ad07092dea56a3d9b4a34cdb4ccab636588305237f3c3e4588e1c&w=2000",
     preview: true
   }
 ];

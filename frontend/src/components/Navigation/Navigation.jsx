@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
+import { GiStoneBlock } from "react-icons/gi";
+
 import './Navigation.css';
 
 const Navigation = ({ isLoaded }) => {
@@ -8,16 +10,26 @@ const Navigation = ({ isLoaded }) => {
 
     return (
         <>
-        <ul>
-            <li>
-                <NavLink to={'/'} >Home</NavLink>
-            </li>
+        {/* <ul> */}
+            {/* <li> */}
+        <div className="header">
+            <div className="left">
+                <NavLink to={'/'} >
+                <GiStoneBlock className="logo" />
+                    BlockBnB
+                    </NavLink>
+            </div>
+            {/* </li> */}
             {isLoaded && (
-                <li>
-                <ProfileButton user={user} />
-              </li>
+                <div className="right">
+                {/* <li> */}
+
+                <ProfileButton className="profile-button" user={user} />
+              {/* </li> */}
+               </div>
             )}
-        </ul>
+        </div>
+        {/* </ul> */}
         </>
     );
 }

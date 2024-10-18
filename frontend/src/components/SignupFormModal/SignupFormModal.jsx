@@ -64,9 +64,10 @@ const SignupFormModal = () => {
             return dispatch(signUp(payload))
             .then(closeModal)
             .catch(async (res) => {
-            const data = await res.json();
-            if ( data?.errors ) {
-                setErrors(data.errors);
+            // const data = await res.json();
+            if ( res?.errors ) {
+                setErrors(res.errors);
+                console.log(errors)
             }
             });
         }

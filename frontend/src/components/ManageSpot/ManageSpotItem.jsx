@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import * as spotActions from '../../store/spots';
+// import { useDispatch } from 'react-redux';
+// import * as spotActions from '../../store/spots';
 import DeleteSpotModal from '../DeleteSpotModal/DeleteSpotModal.jsx';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 
 const ManageSpotItem = ({ spot }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     // thumbnail image, location, rating, price
@@ -26,7 +26,7 @@ const ManageSpotItem = ({ spot }) => {
         <OpenModalButton
               buttonText="Delete"
               onButtonClick
-              modalComponent={<DeleteSpotModal />}
+              modalComponent={<DeleteSpotModal spot={spot} />}
             />
       </div>
       </div>

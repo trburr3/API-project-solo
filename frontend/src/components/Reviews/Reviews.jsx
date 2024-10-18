@@ -4,20 +4,20 @@ import * as reviewActions from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";
 
-const Reviews = ({ spot, owner }) => {
+const Reviews = ({ spot, owner, user }) => {
     const [authorized, setAuthorized] = useState(false);
 
     const reviews = useSelector(reviewActions.getReviews);
 
     // console.log('I HAVE HIT THE REVIEW COMP',reviews)
 
-    const user = useSelector(state => Object.values(state.session.user))[0]
+    // const user = useSelector(state => Object.values(state.session.user))[0]
 
     const {firstName, id, lastName} = user
 
     const info = {firstName, id, lastName}
 
-    console.log('AM I THE OWNER?', info === owner) //false cant access owner consistently
+    // console.log('AM I THE OWNER?', info === owner) //false cant access owner consistently
 
     const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const Reviews = ({ spot, owner }) => {
             )}
             </div>
             <div className="li-review-text">
-                <p>Posted by: {review.User.firstName}</p>
+                {/* <p>Posted by: {review.User.firstName}</p> */}
                 <p>{review.review}</p>
                 {user === info ?(
                 <OpenModalButton

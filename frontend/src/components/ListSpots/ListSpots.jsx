@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getSpots } from "../../store/spots";
 import * as spotActions from '../../store/spots';
 import { Tooltip } from 'react-tooltip';
+import './ListSpots.css';
 
 const ListSpots = () => {
     const dispatch = useDispatch();
@@ -28,18 +29,18 @@ const ListSpots = () => {
                 alt={spot.name} />
             </div>
             <div className="li-spot-description">
-                <h2>
+                <h2 className="item-1">
                     {spot.city}, {spot.state}
                 </h2>
-                <h3>
+                <h3 className="item-2">
                     {spot.avgRating === "No rating yet." ? ("New") : (spot.avgRating)}
                 </h3>
-                <h4>
+                <h4 className="item-3">
                     ${spot.price}/night
                 </h4>
-                <p>
+                {/* <p>
                     {spot.description}
-                </p>
+                </p> */}
             </div>
             </Link>
         </div>
@@ -50,7 +51,7 @@ const ListSpots = () => {
         <>
         <h1>All Spots</h1>
             <div className="spots-container">
-                <ul>
+                <ul className="spots">
                     {spotItems}
                 </ul>
             </div>

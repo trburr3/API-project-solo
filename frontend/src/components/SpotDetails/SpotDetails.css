@@ -1,0 +1,49 @@
+.spot-images{
+    vertical-align: top;
+
+
+
+  background-color: yellow;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+
+
+  /* width: 90% */
+  display: flex;
+  padding: 20px;
+
+
+}
+
+.image1{
+    display: grid;
+    grid-template-rows: 1.5fr 1fr;
+    grid-template-areas: "image" "text";
+    /* display: flex;
+    flex-shrink: inherit; */
+}
+
+.spot-details-container{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-areas: ".image1" ".image1";
+    grid-gap: 20px;
+}
+
+.info-box{
+    background-color: lightgray;
+    font-size: larger;
+
+    width: fit-content;
+    margin: 0 auto 10px;
+    padding: 40px;
+}
+
+.reserve{
+    color: red;
+}
+
+/* div{
+    border: 100px dashed magenta;
+} */
