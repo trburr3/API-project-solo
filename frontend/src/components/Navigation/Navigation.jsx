@@ -12,11 +12,11 @@ const Navigation = ({ isLoaded }) => {
         <>
         {/* <ul> */}
             {/* <li> */}
-        <div className="header">
+        <div id="header">
             <div className="left">
                 <NavLink to={'/'} >
                 <GiStoneBlock className="logo" />
-                    BlockBnB
+                    <span className="page-title">BlockBnB</span>
                     </NavLink>
             </div>
             {/* </li> */}

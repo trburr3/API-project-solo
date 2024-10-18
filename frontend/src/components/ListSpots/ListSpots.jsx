@@ -19,8 +19,8 @@ const ListSpots = () => {
         <>
         <li key={spot.id}>
         <div className="li-spot-container" >
-            <Link className={`link-comp-${spot.id}`}to={`/spots/${spot.id}`} >
-                <Tooltip anchorSelect={`.link-comp-${spot.id}`} place="top">
+            <Link id={`link-comp-${spot.id}`}to={`/spots/${spot.id}`} >
+            <Tooltip className='tooltip' anchorSelect={`#link-comp-${spot.id}`} place="top">
                 {spot.name}
                 </Tooltip>
             <div className="li-spot-image">
@@ -36,7 +36,7 @@ const ListSpots = () => {
                     {spot.avgRating === "No rating yet." ? ("New") : (spot.avgRating)}
                 </h3>
                 <h4 className="item-3">
-                    ${spot.price}/night
+                    <span className="price">${spot.price}</span>/night
                 </h4>
                 {/* <p>
                     {spot.description}
@@ -49,7 +49,7 @@ const ListSpots = () => {
         );
     return (
         <>
-        <h1>All Spots</h1>
+        {/* <h1>All Spots</h1> */}
             <div className="spots-container">
                 <ul className="spots">
                     {spotItems}

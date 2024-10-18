@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import * as reviewActions from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";
+import './Reviews.css';
 
 const Reviews = ({ spot, owner, user }) => {
     const [authorized, setAuthorized] = useState(false);
@@ -28,13 +29,13 @@ const Reviews = ({ spot, owner, user }) => {
 
     const reviewItems = reviews.map((review) =>
         <li key={review.id}>
-        <div className="li-review-container">
-            <div className="review-image-container">
+        <div id="li-review-container">
+            <div id="review-image-container">
             {review.ReviewImages.map((image) =>
-                <img src={image.url} alt={image.id} key={image.id}/>
+                <img src="https://cdn.pixabay.com/photo/2021/09/14/02/00/video-game-6622740_1280.png" alt={image.id} key={image.id}/>
             )}
             </div>
-            <div className="li-review-text">
+            <div id="review-text">
                 {/* <p>Posted by: {review.User.firstName}</p> */}
                 <p>{review.review}</p>
                 {user === info ?(

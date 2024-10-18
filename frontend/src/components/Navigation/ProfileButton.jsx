@@ -66,9 +66,9 @@ const ProfileButton = ( { user } ) => {
       <ul className={ulClassName} hidden={!showMenu} ref={ulRef}>
       { user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
+            <li className='text-item'>{user.username}</li>
+            <li className='text-item'>{user.firstName} {user.lastName}</li>
+            <li className='text-item'>{user.email}</li>
             <li>
               <button onClick={Logout} id="menu-button-1">Log Out</button>
             </li>
