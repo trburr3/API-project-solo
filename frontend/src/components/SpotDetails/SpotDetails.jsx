@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { GiCursedStar } from "react-icons/gi";
 import * as spotActions from '../../store/spots';
 import Reviews from "../Reviews/Reviews";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
@@ -83,6 +84,17 @@ const SpotDetails = () => {
 
             <div id="review-container">
                 <ul>
+                    <div className="review-avg">
+                    <li>
+                    <GiCursedStar className='review-star-icon'/>
+                    {spot.avgStarRating
+                    === "No rating yet." ? ("New") : (spot.avgStarRating
+                    )}
+                    </li>
+                    <li>
+                    {spot.numReviews} {spot.numReviews > 1 ? ("Reviews") : ("Review")}
+                    </li>
+                    </div>
                 <Reviews spot={spot} owner={spotOwner} user={user} />
                 </ul>
             </div>

@@ -39,8 +39,9 @@
 #spot-images>*{
     margin: 0;
     padding: 0;
-    height: auto;
-   max-width: 100%;
+    height: 270px;
+   /* max-width: 100%; */
+   width: 300px;
    /* object-fit: fill; */
 }
 
@@ -52,11 +53,13 @@
 
 #image1{
     grid-area: "image1";
+    /* width: 300px; */
 }
 
 #image2{
     grid-area: "image2";
-    object-fit: scale-down;
+    /* object-fit: scale-down; */
+    /* width: 100%; */
 }
 
 #image3{
@@ -65,7 +68,7 @@
 
 #image4{
     grid-area: "image4";
-    object-fit: scale-down;
+    /* object-fit: scale-down; */
 }
 
 #spot-details-container{
@@ -179,4 +182,16 @@ h4{
 #pictures{
     display: grid;
     grid-template-columns: 1fr 2fr;
+}
+
+.review-avg{
+    font-size: xx-large;
+    display: grid;
+    grid-template-columns: .1fr 1fr;
+    margin-bottom: 10px;
+
+}
+
+.review-star-icon{
+    padding-right: 10px;
 }
