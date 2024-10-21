@@ -84,7 +84,7 @@ const SignupFormModal = () => {
         <form onSubmit={handleSubmit}>
         <h1 className="form-title">Signup Form</h1>
             {/* <div className="errors">{errors.statusText}</div> */}
-            {/* <div className="errors">{errors.username}</div> */}
+            <div className="errors"   data-testid='email-error-message'>{errors.username}</div>
             <div className="input-large">
             <label>
             <span className="new-text">Username:</span>
@@ -93,12 +93,13 @@ const SignupFormModal = () => {
                 value={username}
                 placeholder="Username"
                 className="new-username"
+                data-testid='username-input'
                 onChange={(e) => {setUsername(e.target.value)}}
                 required />
             </label>
             </div>
             <div className="input-large">
-            {errors.username && <p>{errors.username}</p>}
+            {/* {errors.username && <p>{errors.username}</p>} */}
             <label>
                 Email:
                 <input
@@ -106,6 +107,7 @@ const SignupFormModal = () => {
                 value={email}
                 placeholder="Email"
                 className="email"
+                data-testid='email-input'
                 onChange={(e) => {setEmail(e.target.value)}}
                 required />
             </label>
@@ -119,12 +121,13 @@ const SignupFormModal = () => {
                 value={firstName}
                 placeholder="First Name"
                 className="first-name"
+                data-testid='first-name-input'
                 onChange={(e) => {setFirstName(e.target.value)}}
                 required />
             </label>
             </div>
             <div className="input-large">
-            {errors.firstName && <p>{errors.firstName}</p>}
+            {/* {errors.firstName && <p>{errors.firstName}</p>} */}
             <label>
                 Last Name:
                 <input
@@ -132,6 +135,7 @@ const SignupFormModal = () => {
                 value={lastName}
                 placeholder="Last Name"
                 className="last-name"
+                data-testid='last-name-input'
                 onChange={(e) => {setLastName(e.target.value)}}
                 required />
             </label>
@@ -146,13 +150,14 @@ const SignupFormModal = () => {
                 value={password}
                 placeholder="Password"
                 className="new-password"
+                data-testid='password-input'
                 onChange={(e) => {setPassword(e.target.value)}}
                 required />
             </label>
             </div>
             <div className="input-large">
             {errors.password && <p>{errors.password}</p>}
-            {/* <div className="errors">{errors.confirmPassword}</div> */}
+            <div className="errors" data-testid='username-error-message'>{errors.confirmPassword}</div>
             <label>
                 Confirm Password:
                 <input
@@ -160,12 +165,13 @@ const SignupFormModal = () => {
                 value={confirmPassword}
                 placeholder="Confirm Password"
                 className="confirm-password"
+                data-testid='confirm-password-input'
                 onChange={(e) => {setConfirmPassword(e.target.value)}}
                 required />
             </label>
             </div>
-            {errors.confirmPassword && ( <p>{errors.confirmPassword}</p> )}
-            <button id="signup-button" type="Submit">Signup</button>
+            {/* {errors.confirmPassword && ( <p>{errors.confirmPassword}</p> )} */}
+            <button id="signup-button" type="Submit" data-testid='form-sign-up-button'>Signup</button>
         </form>
         </div>
         </>

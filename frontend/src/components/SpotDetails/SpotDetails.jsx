@@ -43,16 +43,15 @@ const SpotDetails = () => {
     return (
         // <h1>HELLO WORLDDD</h1>
     <>
-    {console.log(spot)}
-    <div id="spots-page">
-    <div id="spot-title">
-    <h1>{spot?.name}</h1>
-    <h2>Location: {spot?.address}, {spot?.city}, {spot?.state}, {spot?.country}</h2>
+    <div id="spots-page" data-testid='spot-tile'>
+    <div id="spot-title" data-testid>
+    <h1 data-testid='spot-name'>{spot?.name}</h1>
+    <h2 data-testid='spot-location'>Location: {spot?.address}, <span data-testid='spot-city'>{spot?.city}</span>, {spot?.state}, {spot?.country}</h2>
     </div>
     <div id="spot-details-container">
             <div id="pictures">
-            <img id="preview" src={spot.previewImage ? spot.previewImage : spot.SpotImages[0].url} alt={spot?.name} />
-            <div id="spot-images">
+            <img id="preview" src={spot.previewImage ? spot.previewImage : spot.SpotImages[0].url} alt={spot?.name}  data-testid='spot-large-image'/>
+            <div id="spot-images" data-testid='spot-small-image'>
                 {/* <div> */}
                 <img id="image1" src={spot.SpotImages? spot.SpotImages[1]?.url : spot.previewImage} alt={spot?.name}/>
                 {/* </div> */}
@@ -67,35 +66,35 @@ const SpotDetails = () => {
             </div>
             </div>
             <div id="spot-info">
-                <div className="spot-text">
+                <div className="spot-text" data-testid='spot-host'>
                 { spotOwner ?
                 (<h2>Hosted by: {spotOwner?.firstName} {spotOwner?.lastName}</h2>) :
                 (<h2>Hosted by: {spot?.ownerId}</h2>)
                 }
                 {/* <h2>Hosted by: {spot?.ownerId}</h2> */}
-                <h3>{spot?.description}</h3>
+                <h3 data-testid='spot-description'>{spot?.description}</h3>
                 </div>
-                <div id="info-box">
-                <h4>${spot?.price}/night</h4>
-                <h4>{spot?.avgRating}</h4>
-                <button id="reserve" onClick={() => alert('Feature comming soon!')}>Reserve</button>
+                <div id="info-box" data-testid='spot-callout-box'>
+                <h4 data-testid='spot-price'>${spot?.price}/night</h4>
+                <h4 data-testid='spot-rating'>{spot?.avgRating}</h4>
+                <button id="reserve" onClick={() => alert('Feature comming soon!')} data-testid='reserve-button'>Reserve</button>
             </div>
             </div>
 
-            <div id="review-container">
+            <div id="review-container" data-testid='reviews-heading'>
                 <ul>
-                    <div className="review-avg">
+                    <div className="review-avg" >
                     <li>
                     <GiCursedStar className='review-star-icon'/>
                     {spot.avgStarRating
                     === "No rating yet." ? ("New") : (spot.avgStarRating
                     )}
                     </li>
-                    <li>
+                    <li data-testid='review-count'>
                     {spot.numReviews} {spot.numReviews > 1 ? ("Reviews") : ("Review")}
                     </li>
                     </div>
-                <Reviews spot={spot} owner={spotOwner} user={user} />
+                <div data-testid='review-list'><Reviews spot={spot} owner={spotOwner} user={user} /></div>
                 </ul>
             </div>
             {user && user.id !== spotOwner?.id ? (

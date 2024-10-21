@@ -10,7 +10,7 @@ const LoginFormModal = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const [disabled, setDisabled] = useState(true);
-    const navigate = useNavigate
+    // const navigate = useNavigate()
 
     const { closeModal } = useModal();
 
@@ -34,6 +34,11 @@ const LoginFormModal = () => {
     //     setPassword('');
     //     // setErrors({});
     // }
+    const loginDemo = (e) => {
+        e.preventDefault();
+        dispatch(login({credential:'Demo-lition', password:'password'}));
+        closeModal()
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -65,6 +70,7 @@ const LoginFormModal = () => {
 
     return (
         <>
+        {console.log('I LIVE')}
         <div className= "form-box">
         <form onSubmit={handleSubmit}>
             <h1 className="form-title">Login Form</h1>
@@ -93,12 +99,13 @@ const LoginFormModal = () => {
                 value={password}
                 placeholder="Password"
                 className="password"
-                data-testid='credential-input'
+                data-testid='password-input'
                 onChange={(e) => {setPassword(e.target.value)}}
                 required />
             </label>
             </div>
             <button id="login-button" type="Submit" data-testid='login-button' >Login</button>
+            <button className='menu-button-2' onClick={loginDemo} data-testid='demo-user-login'>Demo</button>
         </form>
         </div>
         </>

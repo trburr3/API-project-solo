@@ -4,6 +4,25 @@ import { useDispatch } from 'react-redux';
 import * as spotActions from '../../store/spots';
 import './CreateSpotsForm.css';
 
+// export const CREATE_A_NEW_SPOT_FORM_LOCATOR = data-testid='create-spot-form'
+// export const CREATE_A_NEW_SPOT_LOCATION_INPUT_LOCATOR = data-testid='spot-location'
+// export const CREATE_A_NEW_SPOT_FORM_TITLE_LOCATOR = data-testid='form-title'
+// export const CREATE_A_NEW_SPOT_SECTION_1_LOCATOR = data-testid='section-1'
+// export const CREATE_A_NEW_SPOT_SECTION_2_LOCATOR = data-testid='section-2'
+// export const CREATE_A_NEW_SPOT_SECTION_3_LOCATOR = data-testid='section-3'
+// export const CREATE_A_NEW_SPOT_SECTION_4_LOCATOR = data-testid='section-4'
+// export const CREATE_A_NEW_SPOT_SECTION_5_LOCATOR = data-testid='section-5'
+// export const CREATE_A_NEW_SPOT_SECTION_1_HEADING_LOCATOR = data-testid='section-1-heading'
+// export const CREATE_A_NEW_SPOT_SECTION_1_CAPTION_LOCATOR = data-testid='section-1-caption'
+// export const CREATE_A_NEW_SPOT_SECTION_2_HEADING_LOCATOR = data-testid='section-2-heading'
+// export const CREATE_A_NEW_SPOT_SECTION_2_CAPTION_LOCATOR = data-testid='section-2-caption'
+// export const CREATE_A_NEW_SPOT_SECTION_3_HEADING_LOCATOR = data-testid='section-3-heading'
+// export const CREATE_A_NEW_SPOT_SECTION_3_CAPTION_LOCATOR = data-testid='section-3-caption'
+// export const CREATE_A_NEW_SPOT_SECTION_4_HEADING_LOCATOR = data-testid='section-4-heading'
+// export const CREATE_A_NEW_SPOT_SECTION_4_CAPTION_LOCATOR = data-testid='section-4-caption'
+// export const CREATE_A_NEW_SPOT_SECTION_5_HEADING_LOCATOR = data-testid='section-5-heading'
+// export const CREATE_A_NEW_SPOT_SECTION_5_CAPTION_LOCATOR = data-testid='section-5-caption'
+
 const CreateSpotsForm = ({ spot }) => {
   const navigate = useNavigate();
   const [country, setCountry] = useState(spot?.country);
@@ -63,12 +82,12 @@ const CreateSpotsForm = ({ spot }) => {
 
   return (
     <div className="create-form">
-      <div className='form'>
-    <form onSubmit={handleSubmit}>
-      <h1>Create a New Spot</h1>
-      <section className='form-section' id='location'>
-        <h2>Where's your place located?</h2>
-        <h4>Guests will only get your exact address once they booked a reservation.</h4>
+      <div className='form' data-testid='section-1'>
+    <form onSubmit={handleSubmit} data-testid='create-spot-form'>
+      <h1  data-testid='form-title'>Create a New Spot</h1>
+      <section className='form-section' id='location' data-testid='spot-location'>
+        <h2  data-testid='section-1-heading'>Where's your place located?</h2>
+        <h4 data-testid='section-1-caption'>Guests will only get your exact address once they booked a reservation.</h4>
       {/* <div className="errors">{errors.understanding}</div> */}
       <label>
       Country:
@@ -135,9 +154,9 @@ const CreateSpotsForm = ({ spot }) => {
         />
       </label>
       </section>
-      <section id='description' className='form-section'>
-        <h2>Describe your place to guests</h2>
-        <h4>
+      <section id='description' className='form-section' data-testid='section-3'>
+        <h2 data-testid='section-2-heading'>Describe your place to guests</h2>
+        <h4 data-testid='section-2-caption'>
             Mention the best features of your space,
             any special amentities like fast wifi or parking,
             and what you love about the neighborhood.
@@ -153,9 +172,9 @@ const CreateSpotsForm = ({ spot }) => {
         />
       </label>
       </section>
-      <section id='spot-name' className='form-section'>
-        <h2>Create a title for your spot</h2>
-        <h4>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
+      <section id='spot-name' className='form-section' data-testid='section-3'>
+        <h2 data-testid='section-3-heading'>Create a title for your spot</h2>
+        <h4 data-testid='section-3-caption'>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
         <label>
       {/* Name: */}
         <input
@@ -167,9 +186,9 @@ const CreateSpotsForm = ({ spot }) => {
         />
       </label>
       </section>
-      <section id='price' className='form-section'>
-        <h2>Set a base price for your spot</h2>
-        <h4>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
+      <section id='price' className='form-section' data-testid='section-4'>
+        <h2 data-testid='section-4-heading'>Set a base price for your spot</h2>
+        <h4 data-testid='section-4-caption'>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
         <label>
       $
         <input
@@ -181,9 +200,9 @@ const CreateSpotsForm = ({ spot }) => {
         />
       </label>
       </section>
-      <section id='photos' className='form-section'>
-        <h2>Liven up your spot with photos</h2>
-        <h4>Submit a link to at least one photo to publish your spot.</h4>
+      <section id='photos' className='form-section' data-testid='section-5'>
+        <h2 data-testid='section-5-heading'> Liven up your spot with photos</h2>
+        <h4 data-testid='section-5-caption'>Submit a link to at least one photo to publish your spot.</h4>
         <label>
       Preview:
         <input

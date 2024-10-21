@@ -5,6 +5,14 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";
 import './Reviews.css';
 
+// export const REVIEW_LIST_LOCATOR = data-testid='review-list'
+// export const REVIEW_ITEM_LOCATOR = data-testid='review-item'
+// export const REVIEW_DATE_LOCATOR = data-testid='review-date'
+// export const REVIEW_TEXT_LOCATOR = data-testid='review-text'
+// export const REVIEW_BUTTON_LOCATOR = data-testid='review-button'
+// export const REVIEW_COUNT_LOCATOR = data-testid='review-count'
+// export const REVIEW_HEADING_LOCATOR = data-testid='reviews-heading'
+
 const Reviews = ({ spot, owner, user }) => {
     const [authorized, setAuthorized] = useState(false);
 
@@ -29,14 +37,14 @@ const Reviews = ({ spot, owner, user }) => {
 
     const reviewItems = reviews.map((review) =>
         <li key={review.id}>
-        {console.log('I AM YOUR REVIEW',review)}
-        <div id="li-review-container">
+        {/* {console.log('I AM YOUR REVIEW',review)} */}
+        <div id="li-review-container" data-testid='review-item'>
             <div id="review-image-container">
             {review.ReviewImages.map((image) =>
                 <img src={review.ReviewImages[0]?.url} alt={image.id} key={image.id}/>
             )}
             </div>
-            <div id="review-text">
+            <div id="review-text" data-testid='review-text'>
                 {/* <p>Posted by: {review.User.firstName}</p> */}
                 <p>{review.review}</p>
                 {user === info ?(
@@ -47,7 +55,7 @@ const Reviews = ({ spot, owner, user }) => {
                 />
                 ) : ("")}
                 <br />
-                <p>{review.createdAt}</p>
+                <p data-testid='review-date'>{review.createdAt}</p>
             </div>
         </div>
         </li>

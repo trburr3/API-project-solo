@@ -60,7 +60,7 @@ const ProfileButton = ( { user } ) => {
     <>
       {/* <div style={{ color: "orange", fontSize: "100px" }}> */}
       {user ? (
-        <button onClick={New} id='new' className="menu-button-2 create-nav">Create a New Spot</button>
+        <button onClick={New} id='new' className="menu-button-2 create-nav" data-testid='create-new-spot-button'>Create a New Spot</button>
       ) : ("")}
       <button onClick={toggle} className='menu-button' data-testid='user-menu-button'>
       <FiMenu className="menu"/>
@@ -79,18 +79,23 @@ const ProfileButton = ( { user } ) => {
           </>
         ) : (
           <>
+
             <OpenModalButton
               buttonText="Log In"
               onButtonClick={closeMenu}
               className="menu-button-1"
+              data-testid='login-modal'
               modalComponent={<LoginFormModal />}
             />
+
             <OpenModalButton
               buttonText="Sign Up"
               onButtonClick={closeMenu}
               className="menu-button-2"
+              data-testid='sign-up-form'
               modalComponent={<SignupFormModal />}
             />
+
           </>
         )}
          { user ? (
