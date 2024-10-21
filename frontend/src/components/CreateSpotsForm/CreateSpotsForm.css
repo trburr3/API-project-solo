@@ -1,4 +1,4 @@
-#create-form{
+.create-form{
     /* display: flex;
     justify-content: center; */
     display: grid;
@@ -6,7 +6,7 @@
     grid-template-areas:
     ". .form .";
 }
-#form{
+.form{
     grid-area: 2/2/auto;
 }
 .form-section{
@@ -52,6 +52,7 @@
     background-color: #D0D1D4;
     margin-top: 10px;
     font-size: large;
+    padding: 5px;
 }
 
 .form-input{
@@ -59,11 +60,12 @@
     background-color: #D0D1D4;
     margin: 10px 0 10px 0;
     font-size: larger;
+    padding: 5px;
 }
 
 .price-input{
     margin-left: 10px;
-    width: 96%;
+    width: 95%;
     font-size: large;
 }
 
@@ -71,7 +73,7 @@
     font-size: x-large;
 }
 
-#create-button{
+.create-button{
   width: 30%;
   height: auto;
   font-size: large;
@@ -80,7 +82,7 @@
   box-shadow: 5px 5px #1D4D13;
 }
 
-#create-button:hover{
+.create-button:hover{
     background-color: #2A641C;
 }
 

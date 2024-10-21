@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as spotActions from '../../store/spots';
+import './EditSpotForm.css';
 
 const EditSpotForm = () => {
   const spotId = useParams().spotId;
   const spot = useSelector(spotActions.getSpots)[spotId-1]
-  
+
   const navigate = useNavigate();
   const [country, setCountry] = useState(spot?.country);
   const [address, setAddress] = useState(spot?.address);
@@ -63,10 +64,11 @@ const EditSpotForm = () => {
   };
 
   return (
-
+    <div className='create-form'>
+    <div className='form'>
     <form onSubmit={handleSubmit}>
       <h1>Update your Spot</h1>
-      <section className='location'>
+      <section className='form-section' id='location'>
         <h2>Where's your place located?</h2>
         <h4>Guests will only get your exact address once they booked a reservation.</h4>
       {/* <div className="errors">{errors.understanding}</div> */}
@@ -76,6 +78,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Country'
           value={country}
+          className='form-input'
           onChange={(e) => setCountry(e.target.value)}
           required
         />
@@ -86,6 +89,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Street Address'
           value={address}
+          className='form-input'
           onChange={(e) => setAddress(e.target.value)}
           required
         />
@@ -96,6 +100,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='City'
           value={city}
+          className='form-input'
           onChange={(e) => setCity(e.target.value)}
           required
         />
@@ -106,6 +111,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='State'
           value={state}
+          className='form-input'
           onChange={(e) => setState(e.target.value)}
           required
         />
@@ -116,6 +122,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Latitude'
           value={latitude}
+          className='form-input'
           onChange={(e) => setLatitude(e.target.value)}
         />
       </label>
@@ -125,11 +132,12 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Longitude'
           value={longitude}
+          className='form-input'
           onChange={(e) => setLongitude(e.target.value)}
         />
       </label>
       </section>
-      <section className='description'>
+      <section id='description' className='form-section'>
         <h2>Describe your place to guests</h2>
         <h4>
             Mention the best features of your space,
@@ -138,41 +146,44 @@ const EditSpotForm = () => {
         </h4>
       {/* <div className="errors">{errors.improvement}</div> */}
       <label>
-        Description:
+        {/* Description: */}
         <textarea
           placeholder='Please write at least 30 characters'
           value={description}
+          id="desc-text"
           onChange={(e) => setDescription(e.target.value)}
         />
       </label>
       </section>
-      <section className='spot-name'>
+      <section id='spot-name' className='form-section'>
         <h2>Create a title for your spot</h2>
         <h4>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
         <label>
-      Name:
+      {/* Name: */}
         <input
           type="text"
           placeholder='Name of your spot'
           value={name}
+          className='form-input'
           onChange={(e) => setName(e.target.value)}
         />
       </label>
       </section>
-      <section className='price'>
+      <section id='price' className='form-section'>
         <h2>Set a base price for your spot</h2>
         <h4>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
         <label>
-      Price:
+      $
         <input
           type="number"
           placeholder='Price per night (USD)'
           value={price}
+          className='form-input price-input'
           onChange={(e) => setPrice(e.target.value)}
         />
       </label>
       </section>
-      <section className='photos'>
+      <section id='photos' className='form-section'>
         <h2>Liven up your spot with photos</h2>
         <h4>Submit a link to at least one photo to publish your spot.</h4>
         <label>
@@ -181,6 +192,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Preview Image URL'
           value={preview}
+          className='form-input'
           onChange={(e) => setPreview(e.target.value)}
           required
         />
@@ -191,6 +203,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Image URL'
         //   value={images}
+        className='form-input'
           onChange={(e) => setImages({...images, ...e.target.value})}
         />
       </label>
@@ -200,6 +213,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Image URL'
         //   value={images}
+        className='form-input'
           onChange={(e) => setImages({...images, ...e.target.value})}
         />
       </label>
@@ -209,6 +223,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Image URL'
         //   value={images}
+        className='form-input'
           onChange={(e) => setImages({...images, ...e.target.value})}
         />
       </label>
@@ -218,6 +233,7 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Image URL'
         //   value={images}
+        className='form-input'
           onChange={(e) => setImages({...images, ...e.target.value})}
         />
       </label>
@@ -227,12 +243,17 @@ const EditSpotForm = () => {
           type="text"
           placeholder='Image URL'
         //   value={images}
+        className='form-input'
           onChange={(e) => setImages({...images, ...e.target.value})}
         />
       </label>
       </section>
-      <button type="submit">Update your Spot</button>
+      <div className='button-box'>
+      <button className='create-button' type="submit">Update your Spot</button>
+      </div>
     </form>
+    </div>
+    </div>
   );
 };
 

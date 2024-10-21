@@ -62,8 +62,8 @@ const CreateSpotsForm = ({ spot }) => {
   };
 
   return (
-    <div id="create-form">
-      <div id='form'>
+    <div className="create-form">
+      <div className='form'>
     <form onSubmit={handleSubmit}>
       <h1>Create a New Spot</h1>
       <section className='form-section' id='location'>
@@ -247,7 +247,7 @@ const CreateSpotsForm = ({ spot }) => {
       </label>
       </section>
       <div className='button-box'>
-      <button id='create-button' type="submit">Create Spot</button>
+      <button className='create-button' type="submit">Create Spot</button>
       </div>
     </form>
     </div>

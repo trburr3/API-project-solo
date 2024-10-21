@@ -48,7 +48,7 @@ const SpotDetails = () => {
     <h2>Location: {spot?.address}, {spot?.city}, {spot?.state}, {spot?.country}</h2>
     </div>
     <div id="spot-details-container">
-
+            <div id="pictures">
             <img id="preview" src="https://img.freepik.com/free-photo/3d-render-house-countryside_1048-13116.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt={spot.name} />
             <div id="spot-images">
                 {/* <div> */}
@@ -62,6 +62,7 @@ const SpotDetails = () => {
                 {/* <div>
                 <img id="image5" src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
                 </div> */}
+            </div>
             </div>
             <div id="spot-info">
                 <div className="spot-text">
