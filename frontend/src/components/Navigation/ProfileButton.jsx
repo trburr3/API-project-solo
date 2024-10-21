@@ -62,12 +62,12 @@ const ProfileButton = ( { user } ) => {
       {user ? (
         <button onClick={New} id='new' className="menu-button-2 create-nav">Create a New Spot</button>
       ) : ("")}
-      <button onClick={toggle} className='menu-button'>
+      <button onClick={toggle} className='menu-button' data-testid='user-menu-button'>
       <FiMenu className="menu"/>
-        <TbBrandMinecraft className='menu-symbol'/>
+        <TbBrandMinecraft className='menu-symbol' />
       {/* </div> */}
       </button>
-      <ul className={ulClassName} hidden={!showMenu} ref={ulRef}>
+      <ul className={ulClassName} hidden={!showMenu} ref={ulRef} data-testid='user-dropdown-menu'>
       { user ? (
           <>
             <li className='text-item'>{user.username}</li>

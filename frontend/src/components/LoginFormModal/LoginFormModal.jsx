@@ -78,6 +78,7 @@ const LoginFormModal = () => {
                 value={credential}
                 placeholder="Username or Email"
                 className="username"
+                data-testid='credential-input'
                 onChange={(e) => {setCredential(e.target.value)}}
                 required />
             </label>
@@ -92,11 +93,12 @@ const LoginFormModal = () => {
                 value={password}
                 placeholder="Password"
                 className="password"
+                data-testid='credential-input'
                 onChange={(e) => {setPassword(e.target.value)}}
                 required />
             </label>
             </div>
-            <button id="login-button" type="Submit">Login</button>
+            <button id="login-button" type="Submit" data-testid='login-button' >Login</button>
         </form>
         </div>
         </>

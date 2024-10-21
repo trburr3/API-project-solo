@@ -15,7 +15,7 @@ const Navigation = ({ isLoaded }) => {
         <div id="header">
             <div className="left">
                 <NavLink to={'/'} >
-                <GiStoneBlock className="logo" />
+                <GiStoneBlock className="logo"   data-testid='logo'/>
                     <span className="page-title">BlockBnB</span>
                     </NavLink>
             </div>
