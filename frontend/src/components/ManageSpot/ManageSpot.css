@@ -1,0 +1,16 @@
+#buttons-conatiner{
+    margin: 1rem;
+    padding: 1 rem;
+}
+
+#edit-link, #spot-delete-button{
+    background-color: #595c67;
+    color:#D0D1D4;
+    width: 10%;
+    height: 40px;
+}
+
+#edit-link:hover, #spot-delete-button:hover{
+    background-color: #B1B2B5;
+    color: #595c67;
+}

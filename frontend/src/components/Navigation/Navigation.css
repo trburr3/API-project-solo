@@ -100,13 +100,15 @@ ul.profile-dropdown > li{
 .menu{
     padding-right: 10px;
     font-size: large;
-    background-color:#D0D1D4
+    background-color:#D0D1D4;
+    color: #48494A
 }
 
 .menu-symbol{
     font-size: x-large;
     background-color:#D0D1D4;
     padding-left: 1rem;
+    color: #48494A;
 }
 
 a{

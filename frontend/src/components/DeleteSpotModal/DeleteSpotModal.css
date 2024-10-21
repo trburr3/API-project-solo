@@ -1,7 +1,28 @@
 .button-yes{
     background-color: red;
+    padding: 5px;
+    margin-left: 80px;
 }
 
 .button-no{
-    background-color: darkgray;
+    background-color: rgb(154, 152, 152);
+    padding: 5px;
+}
+
+#delete-window{
+    margin: 10px;
+    padding: 10px;
+}
+
+.button-yes:hover{
+    color:#D0D1D4;
+
+}
+
+.button-no:hover{
+    color:#D0D1D4;
+}
+
+#delete-window>h4, h3{
+    padding-bottom: 10px;
 }

@@ -32,10 +32,12 @@ const DeleteSpotModal = ({ spot }) => {
     }
     return (
         <>
+        <div id="delete-window">
         <h1>Confirm Delete</h1>
             <h3>Are you sure you want to remove this spot?</h3>
             <button type="Submit" className="button-yes" onClick={handleSubmit}>Yes (Delete Spot)</button>
             <button type="Submit" className="button-no" onClick={closeModal}>No (Keep Spot)</button>
+        </div>
         </>
     )
 

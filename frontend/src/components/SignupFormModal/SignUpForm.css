@@ -1,0 +1,70 @@
+.errors{
+    color: red;
+    font-weight: bold;
+}
+
+#signup-button{
+    background-color: #7345E5;
+    color:#D0D1D4;
+    width: 100%;
+    height: 40px;
+    box-shadow: 5px 5px #4A1CAC;
+    font-size: larger;
+}
+
+#signup-button:hover{
+    background-color: #5D2CC6;
+}
+
+.new-username, .first-name, .email, .last-name, .new-password{
+    margin-right: 1rem;
+}
+
+.new-username, .first-name, .email, .last-name, .new-password, .confirm-password{
+    background-color: #D0D1D4;
+    width:97%;
+    margin-bottom: 1rem;
+}
+
+.input-large{
+    font-size: larger;
+}
+
+.email{
+    grid-area: "email";
+
+}
+
+.first-name{
+    grid-area: "first";
+
+}
+
+.last-name{
+    grid-area: "last";
+
+}
+
+.new-password{
+    grid-area: "password";
+
+}
+
+.confirm-password{
+    grid-area: "confirm";
+
+}
+
+.new-form-box{
+    padding: 1rem;
+    margin: 1rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-areas:
+    ".first" ".last"
+    ".user" ".email"
+    ".password" ".confirm";
+}
+
