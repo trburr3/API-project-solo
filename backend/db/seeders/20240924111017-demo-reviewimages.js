@@ -12,11 +12,27 @@ if (process.env.NODE_ENV === 'production') {
 const reviewImageData = [
   {
     reviewId: 4,
-    url: "https://images.app.goo.gl/jYJGSQZfJMUGwsVH9"
+    url: "https://cdn.pixabay.com/photo/2021/09/14/01/59/cube-6622736_1280.png"
   },
   {
     reviewId: 2,
-    url: "https://images.app.goo.gl/4pMTvNj9YoVVFFbV6"
+    url: "https://cdn.pixabay.com/photo/2021/09/14/02/03/video-game-6622751_1280.png"
+  },
+  {
+    reviewId: 3,
+    url: "https://cdn.pixabay.com/photo/2021/09/14/01/58/cube-6622734_1280.png"
+  },
+  {
+    reviewId: 1,
+    url: "https://cdn.pixabay.com/photo/2021/09/14/02/00/video-game-6622740_1280.png"
+  },
+  {
+    reviewId: 5,
+    url: "https://cdn.pixabay.com/photo/2021/09/14/02/02/video-game-6622749_1280.png"
+  },
+  {
+    reviewId: 6,
+    url: "https://cdn.pixabay.com/photo/2021/09/14/01/58/cube-6622735_1280.png"
   }
 ]
 

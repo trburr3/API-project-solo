@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ManageSpotItem from './ManageSpotItem';
 import * as spotActions from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import './ManageSpot.css';
 
 const ManageSpots = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // console.log('I AM CALLING THE THUNK')
@@ -31,8 +33,11 @@ const ManageSpots = () => {
   // console.log('MY SPOTS ----> ', userSpots)
 
   return (
-    <section>
-      <ul>
+    <div className='manage'>
+      <h1>Manage Spots</h1>
+      <button onClick={() => navigate('spots/new')} className='menu-button-1 manage-create'>Create a New Spot</button>
+      <div className='spots-container'>
+      <ul className='spots'>
         {
         userSpots?
         (userSpots.map((spot) => (
@@ -40,9 +45,10 @@ const ManageSpots = () => {
             spot={spot}
             key={spot.id}
           />
-        ))) : (<Link to={'/spots/new'}>Create a New Spot</Link>)}
+        ))) : ("")}
       </ul>
-    </section>
+      </div>
+    </div>
   );
 };
 

@@ -28,69 +28,69 @@ const validateReview = [
 
 router.get("/current", requireAuth, async (req, res) => {
 
-    const { user } = req;
+  const { user } = req;
 
-    const reviews = await Review.findAll({
-      where: { userId: user.id },
-      include: [
-        { model: User, attributes: ["id", "firstName", "lastName"] },
-        { model: Spot,
-          attributes: { exclude: ["description", "createdAt", "updatedAt"] },
-          include: [
-            {
-              model: SpotImage,
-              attributes: ["url"],
-              where: { preview: true },
-              required: false,
-              limit: 1,
-            },
-          ],
-        },
-        { model: ReviewImage, attributes: ["id", "url"] },
-      ],
-    });
-
-
-    const reviewsWithDetails = reviews.map((review) => {
-      const reviewJson = review.toJSON();
-
-      const previewImage =
-        reviewJson.Spot.SpotImages.length > 0
-          ? reviewJson.Spot.SpotImages[0].url
-          : "No preview image yet.";
-
-      const reviewImages =
-          reviewJson.ReviewImages.length > 0
-            ? reviewJson.ReviewImages.map(image => ({ id: image.id, url: image.url }))
-            : "No review image yet.";
-
-      return {
-        id: reviewJson.id,
-        userId: reviewJson.userId,
-        spotId: reviewJson.spotId,
-        review: reviewJson.review,
-        stars: reviewJson.stars,
-        createdAt: reviewJson.createdAt,
-        updatedAt: reviewJson.updatedAt,
-        User: reviewJson.User,
-        Spot: {
-          id: reviewJson.Spot.id,
-          ownerId: reviewJson.Spot.ownerId,
-          address: reviewJson.Spot.address,
-          city: reviewJson.Spot.city,
-          state: reviewJson.Spot.state,
-          country: reviewJson.Spot.country,
-          lat: reviewJson.Spot.lat,
-          lng: reviewJson.Spot.lng,
-          name: reviewJson.Spot.name,
-          price: reviewJson.Spot.price,
-          previewImage: previewImage,
-        },
-        ReviewImages: reviewImages,
-      };
-    });
-    return res.status(200).json({ Reviews: reviewsWithDetails });
+  const reviews = await Review.findAll({
+    where: { userId: user.id },
+    include: [
+      { model: User, attributes: ["id", "firstName", "lastName"] },
+      { model: Spot,
+        attributes: { exclude: ["description", "createdAt", "updatedAt"] },
+        include: [
+          {
+            model: SpotImage,
+            attributes: ["url"],
+            where: { preview: true },
+            required: false,
+            limit: 1,
+          },
+        ],
+      },
+      { model: ReviewImage, attributes: ["id", "url"] },
+    ],
   });
+
+
+  const reviewsWithDetails = reviews.map((review) => {
+    const reviewJson = review.toJSON();
+
+    const previewImage =
+      reviewJson.Spot.SpotImages.length > 0
+        ? reviewJson.Spot.SpotImages[0].url
+        : ['No review image yet.'];
+
+    const reviewImages =
+        reviewJson.ReviewImages.length > 0
+          ? reviewJson.ReviewImages.map(image => ({ id: image.id, url: image.url }))
+          : ['No review image yet.'];
+
+    return {
+      id: reviewJson.id,
+      userId: reviewJson.userId,
+      spotId: reviewJson.spotId,
+      review: reviewJson.review,
+      stars: reviewJson.stars,
+      createdAt: reviewJson.createdAt,
+      updatedAt: reviewJson.updatedAt,
+      User: reviewJson.User,
+      Spot: {
+        id: reviewJson.Spot.id,
+        ownerId: reviewJson.Spot.ownerId,
+        address: reviewJson.Spot.address,
+        city: reviewJson.Spot.city,
+        state: reviewJson.Spot.state,
+        country: reviewJson.Spot.country,
+        lat: reviewJson.Spot.lat,
+        lng: reviewJson.Spot.lng,
+        name: reviewJson.Spot.name,
+        price: reviewJson.Spot.price,
+        previewImage: previewImage,
+      },
+      ReviewImages: reviewImages,
+    };
+  });
+  return res.status(200).json({ Reviews: reviewsWithDetails });
+});
 
 
 // Get all Reviews by a Spot's id （this url like /api/spots/:spotId/reviews,so =>spots.js)

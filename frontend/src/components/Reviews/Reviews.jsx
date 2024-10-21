@@ -29,10 +29,11 @@ const Reviews = ({ spot, owner, user }) => {
 
     const reviewItems = reviews.map((review) =>
         <li key={review.id}>
+        {console.log('I AM YOUR REVIEW',review)}
         <div id="li-review-container">
             <div id="review-image-container">
             {review.ReviewImages.map((image) =>
-                <img src="https://cdn.pixabay.com/photo/2021/09/14/02/00/video-game-6622740_1280.png" alt={image.id} key={image.id}/>
+                <img src={review.ReviewImages[0]?.url} alt={image.id} key={image.id}/>
             )}
             </div>
             <div id="review-text">

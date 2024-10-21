@@ -60,7 +60,7 @@ const ProfileButton = ( { user } ) => {
     <>
       {/* <div style={{ color: "orange", fontSize: "100px" }}> */}
       {user ? (
-        <button onClick={New} id='new' className="menu-button-2">Create a New Spot</button>
+        <button onClick={New} id='new' className="menu-button-2 create-nav">Create a New Spot</button>
       ) : ("")}
       <button onClick={toggle} className='menu-button'>
       <FiMenu className="menu"/>

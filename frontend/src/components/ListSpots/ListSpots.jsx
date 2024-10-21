@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { getSpots } from "../../store/spots";
 import * as spotActions from '../../store/spots';
 import { Tooltip } from 'react-tooltip';
+import { GiCursedStar } from "react-icons/gi";
 import './ListSpots.css';
 
 const ListSpots = () => {
     const dispatch = useDispatch();
 
     const spots = useSelector(getSpots);
+    console.log(spots)
 
     useEffect(() => {
         dispatch(spotActions.getAllSpots());
@@ -25,7 +27,7 @@ const ListSpots = () => {
                 </Tooltip>
             <div className="li-spot-image">
             <img
-                src={"https://img.freepik.com/free-photo/3d-house-model-with-modern-architecture_23-2151004049.jpg"}
+                src={spot.previewImage}
                 alt={spot.name} />
             </div>
             <div className="li-spot-description">
@@ -33,6 +35,7 @@ const ListSpots = () => {
                     {spot.city}, {spot.state}
                 </h2>
                 <h3 className="item-2">
+                    <GiCursedStar className='star-icon'/>
                     {spot.avgRating === "No rating yet." ? ("New") : (spot.avgRating)}
                 </h3>
                 <h4 className="item-3">

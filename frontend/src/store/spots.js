@@ -48,7 +48,7 @@ export const getAllSpots = () => async dispatch => {
 
         // console.log('SPOTS HAVE BEEN FOUND  ----->', spots)
 
-        dispatch(load(spots));
+        dispatch(load(spots.Spots));
         return null;
     } else {
         const errors = res.errors;
@@ -140,7 +140,7 @@ const spotsReducer = (state = {}, action) => {
     switch(action.type) {
         case LOAD_SPOTS:{
             const spotState = {};
-            // console.log('DO I MAKE IT ?', action.user)
+            // console.log('DO I MAKE IT ?', action.spots)
             action.spots.forEach((spot) => {
                 spotState[spot.id] = spot;
             });

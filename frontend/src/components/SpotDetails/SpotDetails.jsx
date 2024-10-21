@@ -19,7 +19,7 @@ const SpotDetails = () => {
         // console.log('HI IM THE OWNER', spot.Owner)
     }, [dispatch, spotId]);
 
-    console.log('HELLO FROM SPOT DETAILS')
+    // console.log('HELLO FROM SPOT DETAILS')
 
     const user  = useSelector( (state) => state.session.user );
 
@@ -42,6 +42,7 @@ const SpotDetails = () => {
     return (
         // <h1>HELLO WORLDDD</h1>
     <>
+    {console.log(spot)}
     <div id="spots-page">
     <div id="spot-title">
     <h1>{spot?.name}</h1>
@@ -49,16 +50,16 @@ const SpotDetails = () => {
     </div>
     <div id="spot-details-container">
             <div id="pictures">
-            <img id="preview" src="https://img.freepik.com/free-photo/3d-render-house-countryside_1048-13116.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt={spot.name} />
+            <img id="preview" src={spot.previewImage ? spot.previewImage : spot.SpotImages[0].url} alt={spot?.name} />
             <div id="spot-images">
                 {/* <div> */}
-                <img id="image1" src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder"/>
+                <img id="image1" src={spot.SpotImages? spot.SpotImages[1]?.url : spot.previewImage} alt={spot?.name}/>
                 {/* </div> */}
-                <img id="image2" src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
+                <img id="image2" src={spot.SpotImages? spot.SpotImages[2]?.url : spot.previewImage} alt={spot?.name} />
                 {/* <div> */}
-                <img id="image3" src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
+                <img id="image3" src={spot.SpotImages? spot.SpotImages[3]?.url : spot.previewImage} alt={spot?.name}  />
                {/* </div> */}
-                <img id="image4" src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
+                <img id="image4" src={spot.SpotImages? spot.SpotImages[4]?.url : spot.previewImage} alt={spot?.name}  />
                 {/* <div>
                 <img id="image5" src="https://img.freepik.com/free-photo/big-country-house-winter_23-2147803910.jpg?ga=GA1.1.6487007.1729119067&semt=ais_hybrid" alt="placeholder" />
                 </div> */}

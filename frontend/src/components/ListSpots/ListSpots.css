@@ -13,19 +13,6 @@
     /* box-sizing: border-box; */
     /* color: lightgray */
 }
-/* .spots-container{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: flex-end;
-    background-color: blueviolet;
-    color: lightgray;
-
-
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-family: 'minecraft', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-} */
 
 ul{
     list-style: none;
@@ -91,4 +78,9 @@ ul{
 
 .price{
     color: #D0D1D4;
+}
+
+.star-icon{
+    color: black;
+    padding-right: 10px;
 }

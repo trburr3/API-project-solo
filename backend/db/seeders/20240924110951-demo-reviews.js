@@ -39,7 +39,13 @@ const reviews = [
     userId: 3,
     review: "This place smelled so bad...",
     stars: 1
-  }
+  },
+  {
+    spotId: 6,
+    userId: 4,
+    review: "Great stay! Totally five stars if the wifi was a bit stronger.",
+    stars: 4
+  },
 ]
 
 module.exports = {

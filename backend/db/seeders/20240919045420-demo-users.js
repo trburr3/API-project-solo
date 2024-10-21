@@ -21,20 +21,44 @@ module.exports = {
         lastName: 'User'
       },
       {
-        email: 'user1@user.io',
+        email: 'steve@block.io',
         username: 'FakeUser1',
         // hashedPassword: bcrypt.hashSync('password2')
         hashedPassword: bcrypt.hashSync('password2'),
-        firstName: 'Fake',
-        lastName: 'User1'
+        firstName: 'Steve',
+        lastName: 'Minecraft'
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
+        email: 'porkchop@block.io',
+        username: 'porkchop',
         // hashedPassword: bcrypt.hashSync('password3')
         hashedPassword: bcrypt.hashSync('password3'),
-        firstName: 'Fake',
-        lastName: 'User2'
+        firstName: 'Pig',
+        lastName: 'Mob'
+      },
+      {
+        email: 'ender@block.io',
+        username: 'finalBoss',
+        // hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password4'),
+        firstName: 'Ender',
+        lastName: 'Dragon'
+      },
+      {
+        email: 'zombie@block.io',
+        username: 'rotten2core',
+        // hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password5'),
+        firstName: 'Rotten',
+        lastName: 'Flesh'
+      },
+      {
+        email: 'baa@block.io',
+        username: 'baadguy',
+        // hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password6'),
+        firstName: 'Sheep',
+        lastName: 'Mob'
       }
     ], { validate: true });
   },

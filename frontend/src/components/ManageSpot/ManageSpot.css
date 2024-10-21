@@ -1,16 +1,33 @@
-#buttons-conatiner{
-    margin: 1rem;
-    padding: 1 rem;
+#buttons-container{
+    display: grid;
+    grid-template-columns: .5fr .5fr 2fr;
 }
 
-#edit-link, #spot-delete-button{
+#edit-link, #spot-delete-button>button{
     background-color: #595c67;
     color:#D0D1D4;
-    width: 10%;
+    width: 100%;
     height: 40px;
+    font-size: large;
 }
 
-#edit-link:hover, #spot-delete-button:hover{
+#edit-link:hover, #spot-delete-button>button:hover{
     background-color: #B1B2B5;
     color: #595c67;
+}
+
+body{
+    display: inline;
+}
+
+.manage-create{
+    width: 10%;
+    margin:1rem;
+    height: 30px;
+    font-size: large;
+
+}
+
+.manage>h1{
+    margin: 1rem 0 0 1rem
 }
