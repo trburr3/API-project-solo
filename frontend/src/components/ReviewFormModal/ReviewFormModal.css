@@ -1,0 +1,33 @@
+#review-button{
+    width: 90%;
+    font-size: large;
+    color: #D0D1D4;
+    background-color: #3C8527;
+    box-shadow: 5px 5px #1D4D13;
+  }
+
+  #review-button:hover{
+      background-color: #2A641C;
+  }
+
+  #review-box{
+    display: grid;
+    grid-template-rows: .2fr 1fr;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .review-text{
+    padding:5px;
+
+    width:500px
+  }
+
+  .title-text{
+    display: flex;
+    justify-content: center;
+  }
+
+  #review-button.off{
+    background-color: #1D4D13;
+  }

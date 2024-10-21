@@ -1,0 +1,91 @@
+#create-form{
+    /* display: flex;
+    justify-content: center; */
+    display: grid;
+    grid-template-columns: .5fr 1fr .5fr;
+    grid-template-areas:
+    ". .form .";
+}
+#form{
+    grid-area: 2/2/auto;
+}
+.form-section{
+    border-bottom: solid 3px black;
+    padding: 10px 0 10px 0;
+}
+
+.form-section>h2, .form-section>h4{
+    padding-bottom: 10px;
+    background-color: #48494A;
+    color:black;
+}
+
+.form-section>h4{
+    color:#D0D1D4;
+    font-size: large;
+}
+
+#location{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+    "title"
+    "text"
+    "country"
+    "address"
+    "city state"
+    "lat long";
+}
+
+#location>h2{
+    grid-area: 1/1/auto/ span 2;
+}
+
+#location>h4{
+    grid-area: 2/1/auto/ span 2;
+
+}
+
+#desc-text{
+    width: 100%;
+    height: 200px;
+    background-color: #D0D1D4;
+    margin-top: 10px;
+    font-size: large;
+}
+
+.form-input{
+    width: 100%;
+    background-color: #D0D1D4;
+    margin: 10px 0 10px 0;
+    font-size: larger;
+}
+
+.price-input{
+    margin-left: 10px;
+    width: 96%;
+    font-size: large;
+}
+
+#price>label{
+    font-size: x-large;
+}
+
+#create-button{
+  width: 30%;
+  height: auto;
+  font-size: large;
+  color: #D0D1D4;
+  background-color: #3C8527;
+  box-shadow: 5px 5px #1D4D13;
+}
+
+#create-button:hover{
+    background-color: #2A641C;
+}
+
+.button-box{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}

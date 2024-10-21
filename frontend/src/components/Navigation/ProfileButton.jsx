@@ -41,6 +41,7 @@ const ProfileButton = ( { user } ) => {
       e.preventDefault();
       dispatch(logout());
       closeMenu();
+      navigate('/')
     };
 
     const New = (e) => {
@@ -58,6 +59,9 @@ const ProfileButton = ( { user } ) => {
     return (
     <>
       {/* <div style={{ color: "orange", fontSize: "100px" }}> */}
+      {user ? (
+        <button onClick={New} id='new' className="menu-button-2">Create a New Spot</button>
+      ) : ("")}
       <button onClick={toggle} className='menu-button'>
       <FiMenu className="menu"/>
         <TbBrandMinecraft className='menu-symbol'/>
@@ -70,7 +74,7 @@ const ProfileButton = ( { user } ) => {
             <li className='text-item'>{user.firstName} {user.lastName}</li>
             <li className='text-item'>{user.email}</li>
             <li>
-              <button onClick={Logout} id="menu-button-1">Log Out</button>
+              <button onClick={Logout} className="menu-button-1">Log Out</button>
             </li>
           </>
         ) : (
@@ -78,24 +82,24 @@ const ProfileButton = ( { user } ) => {
             <OpenModalButton
               buttonText="Log In"
               onButtonClick={closeMenu}
-              id="menu-button-1"
+              className="menu-button-1"
               modalComponent={<LoginFormModal />}
             />
             <OpenModalButton
               buttonText="Sign Up"
               onButtonClick={closeMenu}
-              id="menu-button-2"
+              className="menu-button-2"
               modalComponent={<SignupFormModal />}
             />
           </>
         )}
          { user ? (
             <>
+            {/* <li>
+            <button onClick={New} className="menu-button-2">Create a New Spot</button>
+            </li> */}
             <li>
-            <button onClick={New} id="menu-button-2">Create a New Spot</button>
-            </li>
-            <li>
-            <button onClick={Edit} id="menu-button-3">Manage Spots</button>
+            <button onClick={Edit} className="menu-button-3">Manage Spots</button>
             </li>
             </>
         ) : ("") }

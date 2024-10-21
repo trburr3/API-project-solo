@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import './LoginForm.css';
+import { useNavigate } from "react-router-dom";
 
 const LoginFormModal = () => {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const [disabled, setDisabled] = useState(true);
+    const navigate = useNavigate
 
     const { closeModal } = useModal();
 

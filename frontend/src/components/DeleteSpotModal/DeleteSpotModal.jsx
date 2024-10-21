@@ -22,7 +22,7 @@ const DeleteSpotModal = ({ spot }) => {
         e.preventDefault();
 
         return dispatch(spotActions.deleteSpot(spot.id))
-        .then(() => closeModal)
+        .then(closeModal)
         .catch(async (res) => {
         // const data = await res.json();
         if ( res?.errors ) {
@@ -33,7 +33,9 @@ const DeleteSpotModal = ({ spot }) => {
     return (
         <>
         <div id="delete-window">
+        <div className="title-text">
         <h1>Confirm Delete</h1>
+        </div>
             <h3>Are you sure you want to remove this spot?</h3>
             <button type="Submit" className="button-yes" onClick={handleSubmit}>Yes (Delete Spot)</button>
             <button type="Submit" className="button-no" onClick={closeModal}>No (Keep Spot)</button>

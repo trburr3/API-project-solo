@@ -6,16 +6,21 @@
 
 #preview{
     /* border: 10px dashed yellow; */
-    width: 120%;
+    grid-area: 1/1/auto;
+    /* width: 120%; */
     /* height: auto; */
     margin-left: 2rem;
+    max-width: fit-content;
+    height: 100%;
 }
 
 #spot-images{
 
   /* background-color: yellow; */
-  width: 71%;
-  height: 26rem;
+  /* width: 71%; */
+  /* height: 26rem; */
+  grid-area: 1/1/auto;
+  width: 50%;
   justify-self: right;
   margin-right: 2rem;
 
@@ -68,15 +73,16 @@
     /* z-index: 0; */
     height: auto;
     max-width: 20%;
-    border: 5px solid turquoise
+    /* border: 5px solid turquoise */
 }
 
 #spot-details-container{
     margin:1px 50px;
     display: grid;
-    /* grid-template-columns:  2fr 2fr; */
-    grid-template-areas: ".image1" ".image1";
+    grid-template-rows:  2fr 2fr 2fr;
+    /* grid-template-areas: ".image1" ".image1"; */
     /* grid-gap: 20px; */
+    /* border: 5px solid turquoise */
 }
 
 #info-box{
@@ -85,15 +91,15 @@
 
     width: 400px;
     height: 100px;
-    /* border: 5px solid cyan; */
+    /* border: 5px dashed cyan; */
     /* outline: 2px solid magenta; */
     /* margin: 0 auto 10px;
     padding: 40px; */
-    justify-self: right;
     margin-right: 2rem;
     font-size: 2em;
     border-radius: 10px;
     margin-top: 1rem;
+    grid-area: 1/2/auto;
 }
 
 div#info-box>h4{
@@ -122,7 +128,19 @@ h4{
     padding-top: 10px;
     /* border: 1px dashed magenta; */
     margin-left: 2rem;
-    width: 240%;
+    /* width: 240%; */
+}
+
+#review-container{
+    /* border: 1px dashed magenta; */
+}
+
+#spot-info{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* border: 1px dashed greenyellow; */
+    border-bottom: solid 5px black;
+    margin-bottom: 10px;
 }
 
 #li-review-container{
@@ -147,4 +165,25 @@ h4{
     /* background-color: aqua; */
 
     /* margin-left: 100px; */
+}
+
+.spot-text{
+    grid-area: 1/1/auto;
+}
+
+#review-modal>button{
+    background-color: #3C8527;
+    color:#D0D1D4;
+    box-shadow: 2px 2px #1D4D13;
+    display: flex;
+    margin-left: 40px;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+#review-modal>button:hover{
+    background-color: #2A641C;
 }

@@ -53,6 +53,7 @@ const StarRatingInput = ({ rating, disabled, onChange }) => {
           onClick={() => onChange(5)}>
           <GiCursedStar />
         </div>
+        <p>Stars</p>
       </div>
       </>
     );
