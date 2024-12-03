@@ -19,7 +19,8 @@ const spotData = [
     lng: -118.2437,
     name: "Leeward Lighthouse",
     description:
-      "Nestled on a rugged cliff, this charming lighthouse getaway offers breathtaking views of crashing waves and icy seas. Inside, the cozy warmth of a crackling fireplace contrasts beautifully with the chilly winds outside, creating the perfect retreat for relaxation and reflection. As snowflakes drift down, enjoy hot cocoa on the porch while watching the distant light beam guide ships through the frosty night.",
+      "Nestled on a rugged cliff, this charming lighthouse getaway offers breathtaking views of crashing waves and icy seas.",
+      // "Inside, the cozy warmth of a crackling fireplace contrasts beautifully with the chilly winds outside, creating the perfect retreat for relaxation and reflection. As snowflakes drift down, enjoy hot cocoa on the porch while watching the distant light beam guide ships through the frosty night.",
     price: 800,
   },
   {
@@ -32,7 +33,8 @@ const spotData = [
     lng: -120.0324,
     name: "Elegant Escape",
     description:
-      "This unique bed and breakfast, housed in a charming Victorian mansion, offers a cozy retreat with a thrilling twist—at night, the occasional thump of zombies banging on the doors adds a spine-chilling element to your stay. Guests can enjoy the inviting rooms adorned with vintage decor and a hearty breakfast each morning, all while being reminded to keep their wits about them after dark. Embrace the excitement of the unknown as you gather around the fireplace to swap ghost stories and prepare for a night of unexpected encounters.",
+      "This unique bed and breakfast, housed in a charming Victorian mansion, offers a cozy retreat with a thrilling twist—at night, the occasional thump of zombies banging on the doors adds a spine-chilling element to your stay.",
+      // Guests can enjoy the inviting rooms adorned with vintage decor and a hearty breakfast each morning, all while being reminded to keep their wits about them after dark. Embrace the excitement of the unknown as you gather around the fireplace to swap ghost stories and prepare for a night of unexpected encounters.",
     price: 300,
   },
   {
@@ -45,7 +47,8 @@ const spotData = [
     lng: -80.1918,
     name: "Cliffside Cabin",
     description:
-      "Deep in the heart of the forest, this rugged cabin invites adventurous souls to embrace the wild, complete with the thrill of uncovering real skeletons hidden among the trees. Surrounded by lush greenery and winding trails, the cabin serves as the perfect base for hiking, fishing, and exploring the mysteries of nature. After a day of exhilarating discovery, retreat to the cabin's warm, inviting interior, where tales of your eerie finds can be shared around the crackling fire. ",
+      "Deep in the heart of the forest, this rugged cabin invites adventurous souls to embrace the wild, complete with the thrill of uncovering real skeletons hidden among the trees.",
+      // Surrounded by lush greenery and winding trails, the cabin serves as the perfect base for hiking, fishing, and exploring the mysteries of nature. After a day of exhilarating discovery, retreat to the cabin's warm, inviting interior, where tales of your eerie finds can be shared around the crackling fire. ",
     price: 1200,
   },
   {
@@ -58,7 +61,8 @@ const spotData = [
     lng: -106.8175,
     name: "Calm Sancturary",
     description:
-      "This beautifully converted church bed and breakfast retains its historic charm, featuring stunning stained glass windows and original wood beams that create an inviting atmosphere. Each guest room is uniquely decorated, blending rustic elegance with modern comforts, while the grand common area invites relaxation with its cozy seating and fireplace. Enjoy a delightful breakfast in the former sanctuary, where the light streaming through the colorful glass fills the space with a warm, serene glow.",
+      "This beautifully converted church bed and breakfast retains its historic charm, featuring stunning stained glass windows and original wood beams that create an inviting atmosphere.",
+      // Each guest room is uniquely decorated, blending rustic elegance with modern comforts, while the grand common area invites relaxation with its cozy seating and fireplace. Enjoy a delightful breakfast in the former sanctuary, where the light streaming through the colorful glass fills the space with a warm, serene glow.",
     price: 1000,
   },
   {
@@ -71,7 +75,8 @@ const spotData = [
     lng: -111.7608,
     name: "Red Rock Haven",
     description:
-      "Step into a whimsical pirate ship-themed getaway, where rustic wooden beams and nautical decor set the scene for an adventurous escape. The bed, designed to resemble a captain’s quarters, is surrounded by treasure chest nightstands and maps of uncharted waters. Complete with a vintage ship wheel and lanterns, this immersive space invites you to unleash your inner buccaneer and sail away into a world of imagination.",
+      "Step into a whimsical pirate ship-themed getaway, where rustic wooden beams and nautical decor set the scene for an adventurous escape.",
+      // The bed, designed to resemble a captain’s quarters, is surrounded by treasure chest nightstands and maps of uncharted waters. Complete with a vintage ship wheel and lanterns, this immersive space invites you to unleash your inner buccaneer and sail away into a world of imagination.",
     price: 400,
   },
   {
@@ -84,7 +89,8 @@ const spotData = [
     lng: -111.7608,
     name: "Golden Alcove",
     description:
-      "This enchanting bed and breakfast features a stunning façade reminiscent of a tiered temple, adorned with intricate carvings and vibrant colors that come alive at sunset. Guests are treated to breathtaking views as the golden light casts a warm glow over the lush gardens and tranquil waters surrounding the property. Inside, the inviting atmosphere combines comfort and elegance, making it the perfect retreat to unwind and soak in the beauty of the evening.",
+      "This enchanting bed and breakfast features a stunning façade reminiscent of a tiered temple, adorned with intricate carvings and vibrant colors that come alive at sunset.",
+      //  Guests are treated to breathtaking views as the golden light casts a warm glow over the lush gardens and tranquil waters surrounding the property. Inside, the inviting atmosphere combines comfort and elegance, making it the perfect retreat to unwind and soak in the beauty of the evening.",
     price: 700,
   }
 ]
