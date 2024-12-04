@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from '../../store/reviews';
@@ -6,7 +6,7 @@ import './DeleteReviewModal.css'
 
 const DeleteReviewModal = ({ review }) => {
 
-    const [errors, setErrors] = useState({});
+    // const [errors, setErrors] = useState({});
 
 
     const { closeModal } = useModal();
@@ -22,7 +22,7 @@ const DeleteReviewModal = ({ review }) => {
         .catch(async (res) => {
         const data = await res.json();
         if ( data?.errors ) {
-            setErrors(data.errors);
+            // setErrors(data.errors);
         }
         });
     }

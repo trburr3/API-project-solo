@@ -13,7 +13,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_REVIEWS = 'session/LOAD_REVIEWS';
 const SINGLE_REVIEW = 'session/SINGLE_REVIEW';
 const REMOVE_REVIEW = 'session/REMOVE_REVIEW';
-const UPDATE_REVIEW = 'session/UPDATE_REVIEW'
+const UPDATE_REVIEW = 'session/UPDATE_REVIEW';
 
 //action-creators
 export const load = (reviews) => ({

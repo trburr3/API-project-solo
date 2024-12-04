@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import './LoginForm.css';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const LoginFormModal = () => {
     const [credential, setCredential] = useState('');
@@ -14,7 +14,7 @@ const LoginFormModal = () => {
 
     const { closeModal } = useModal();
 
-    const user  =  useSelector(state => state.session.user) //am i being used?
+    // const user  =  useSelector(state => state.session.user) //am i being used?
 
     const dispatch = useDispatch();
 

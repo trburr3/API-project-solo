@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotActions from '../../store/spots';
@@ -11,7 +11,7 @@ import './DeleteSpotModal.css'
 
 const DeleteSpotModal = ({ spot }) => {
 
-    const [errors, setErrors] = useState({});
+    // const [errors, setErrors] = useState({});
 
 
     const { closeModal } = useModal();
@@ -26,7 +26,7 @@ const DeleteSpotModal = ({ spot }) => {
         .catch(async (res) => {
         // const data = await res.json();
         if ( res?.errors ) {
-            setErrors(res.errors);
+            // setErrors(res.errors);
         }
         });
     }

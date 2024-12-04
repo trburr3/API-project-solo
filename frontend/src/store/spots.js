@@ -27,12 +27,12 @@ export const receive = (spot) => ({
 });
 
 export const remove = (spotId) => ({
-    type: REMOVE_REVIEW,
+    type: REMOVE_SPOT,
     spotId
 });
 
 export const update = (spot) => ({
-    type: UPDATE_REVIEW,
+    type: UPDATE_SPOT,
     spot
 });
 

@@ -82,7 +82,7 @@ export const signUp = (data) => async dispatch => {
     if( res.status === 201 || res.ok ){
         const user = await res.json();
 
-        dispatch(load(user));
+        dispatch(set(user));
         return null;
     } else {
         const errors = res.errors;
@@ -91,7 +91,7 @@ export const signUp = (data) => async dispatch => {
     }
 };
 
-export const logout = (user) => async dispatch => {
+export const logout = () => async dispatch => {
     const res = await csrfFetch('/api/session',{
         method: 'DELETE',
     })

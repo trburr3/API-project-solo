@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from '../../store/reviews';
 import StarRatingInput from "../StarInput/StarInput";
@@ -10,17 +10,17 @@ const ReviewFormModal = ({ spot }) => {
     const [stars, setStars] = useState(0);
     const [disabled, setDisabled] = useState(true);
 
-    const [errors, setErrors] = useState({});
+    // const [errors, setErrors] = useState({});
 
 
     const { closeModal } = useModal();
 
     const dispatch = useDispatch();
 
-     const reset = () => {
-        setReview('');
-        setStars(0);
-    }
+    //  const reset = () => {
+    //     setReview('');
+    //     setStars(0);
+    // }
 
     const onChange = (num) => {
         // const number = e.target.value;
@@ -33,7 +33,7 @@ const ReviewFormModal = ({ spot }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors({});
+        // setErrors({});
 
         const payload = {
             review,
@@ -47,7 +47,7 @@ const ReviewFormModal = ({ spot }) => {
         .catch(async (res) => {
         const data = await res.json();
         if ( data?.errors ) {
-            setErrors(data.errors);
+            // setErrors(data.errors);
         }
         });
     }

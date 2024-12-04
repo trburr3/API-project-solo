@@ -21,7 +21,7 @@ const EditSpotForm = () => {
   const [preview, setPreview] = useState(spot?.previewImage);
   const [images, setImages] = useState({});
 
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ const EditSpotForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
+    // setErrors({});
     const data = {
         country,
         address,
@@ -57,7 +57,7 @@ const EditSpotForm = () => {
         lng: longitude
      };
     // console.log('THUNK AGAIN !!')
-    const newSpot = await dispatch(editSpot(data, spotId))
+    const newSpot = await dispatch(spotActions.editSpot(data, spotId))
     // console.log('IM YOUR NEW SPOT', newSpot)
     reset();
     navigate(`/spots/${newSpot.id}`);
@@ -69,7 +69,7 @@ const EditSpotForm = () => {
     <form onSubmit={handleSubmit}>
       <h1>Update your Spot</h1>
       <section className='form-section' id='location'>
-        <h2>Where's your place located?</h2>
+        <h2>Where&apos;s your place located?</h2>
         <h4>Guests will only get your exact address once they booked a reservation.</h4>
       {/* <div className="errors">{errors.understanding}</div> */}
       <label>
@@ -157,7 +157,7 @@ const EditSpotForm = () => {
       </section>
       <section id='spot-name' className='form-section'>
         <h2>Create a title for your spot</h2>
-        <h4>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
+        <h4>Catch guests&apos; attention with a spot title that highlights what makes your place special.</h4>
         <label>
       {/* Name: */}
         <input

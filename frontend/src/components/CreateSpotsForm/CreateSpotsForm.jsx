@@ -37,7 +37,7 @@ const CreateSpotsForm = ({ spot }) => {
   const [preview, setPreview] = useState(spot?.preview);
   const [images, setImages] = useState({});
 
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
 
@@ -59,7 +59,7 @@ const CreateSpotsForm = ({ spot }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
+    // setErrors({});
     spot = {
         country,
         address,
@@ -86,7 +86,7 @@ const CreateSpotsForm = ({ spot }) => {
     <form onSubmit={handleSubmit} data-testid='create-spot-form'>
       <h1  data-testid='form-title'>Create a New Spot</h1>
       <section className='form-section' id='location' data-testid='spot-location'>
-        <h2  data-testid='section-1-heading'>Where's your place located?</h2>
+        <h2  data-testid='section-1-heading'>Where&apos;s your place located?</h2>
         <h4 data-testid='section-1-caption'>Guests will only get your exact address once they booked a reservation.</h4>
       {/* <div className="errors">{errors.understanding}</div> */}
       <label>
@@ -174,7 +174,7 @@ const CreateSpotsForm = ({ spot }) => {
       </section>
       <section id='spot-name' className='form-section' data-testid='section-3'>
         <h2 data-testid='section-3-heading'>Create a title for your spot</h2>
-        <h4 data-testid='section-3-caption'>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
+        <h4 data-testid='section-3-caption'>Catch guests&apos; attention with a spot title that highlights what makes your place special.</h4>
         <label>
       {/* Name: */}
         <input

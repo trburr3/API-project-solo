@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GiCursedStar } from "react-icons/gi";
 import * as spotActions from '../../store/spots';
 import Reviews from "../Reviews/Reviews";
@@ -11,7 +11,7 @@ import './SpotDetails.css';
 const SpotDetails = () => {
     const dispatch = useDispatch();
 
-    const [isValid, setIsValid] = useState(false);
+    // const [isValid, setIsValid] = useState(false);
 
     const { spotId } = useParams();
 
