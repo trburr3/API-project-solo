@@ -32,6 +32,15 @@ const Reviews = ({ spot, owner, user }) => {
 
     const dispatch = useDispatch();
 
+    const format = (date) => {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+        // console.log('month: ', months[date.slice(5,7)-1], 'year: ', date.slice(0,4))
+
+        return months[date.slice(5,7)-1] + ' ' + date.slice(0,4)
+    }
+
+
     useEffect(() => {
        dispatch(reviewActions.getSpotReviews(spot.id))
     //    console.log('IS IT ME UR LOOKING FOR ', spot.Owner)
@@ -57,7 +66,7 @@ const Reviews = ({ spot, owner, user }) => {
                 />
                 ) : ("")}
                 <br />
-                <p data-testid='review-date'>{review.createdAt}</p>
+                <p data-testid='review-date'>{review.createdAt? format(review.createdAt.slice(0,10)) : ""}</p>
             </div>
         </div>
         </li>

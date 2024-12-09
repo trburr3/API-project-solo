@@ -90,8 +90,9 @@ const SpotDetails = () => {
                     === "No rating yet." ? ("New") : (spot.avgStarRating
                     )}
                     </li>
+                    <li className="center-dot">·</li>
                     <li data-testid='review-count'>
-                    {spot.numReviews} {spot.numReviews > 1 ? ("Reviews") : ("Review")}
+                    {spot.numReviews? spot.numReviews : "Be the first to post a review"} {spot.numReviews > 1 ? ("Reviews") : ("Review")}
                     </li>
                     </div>
                 <div data-testid='review-list'><Reviews spot={spot} owner={spotOwner} user={user} /></div>
