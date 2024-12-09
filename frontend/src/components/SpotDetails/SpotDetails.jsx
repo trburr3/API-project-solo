@@ -97,10 +97,7 @@ const SpotDetails = () => {
                     {spot.numReviews? spot.numReviews : "Be the first to post a review"} {spot.numReviews > 1 ? ("Reviews") : ("Review")}
                     </li>
                     </div>
-                <div data-testid='review-list'><Reviews spot={spot} owner={spotOwner} user={user} /></div>
-                </ul>
-            </div>
-            {user && user.id !== spotOwner?.id ? (
+                    {user && user.id !== spotOwner?.id ? (
                     <div id="review-modal">
                     <OpenModalButton
                     buttonText="Post Your Review"
@@ -110,6 +107,9 @@ const SpotDetails = () => {
                     />
                     </div>
                 ) : ("")}
+                <div data-testid='review-list'><Reviews spot={spot} owner={spotOwner} user={user} /></div>
+                </ul>
+            </div>
         </div>
         {/* <img id="test" src="https://cdn.pixabay.com/photo/2022/06/02/15/07/golden-sword-7238266_1280.png" alt="tester" /> */}
         </div>

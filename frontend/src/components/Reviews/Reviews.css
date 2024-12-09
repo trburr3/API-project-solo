@@ -1,0 +1,14 @@
+.review-item{
+    margin-bottom: 50px;
+}
+
+.delete-button>button{
+    background-color: #7345E5;
+    color:#D0D1D4;
+    width: 150px;
+    height: 30px;
+}
+
+.delete-button>button:hover{
+    background-color: #5D2CC6;
+}

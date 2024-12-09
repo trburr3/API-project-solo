@@ -80,6 +80,23 @@ export const createReview = (data, id) => async dispatch => {
     }
 };
 
+export const deleteReview = (id) => async dispatch => {
+    const res = await csrfFetch(`/api/reviews/${id}`,{
+        method: 'DELETE',
+    })
+
+    if ( res.ok ) {
+        // const user = await res.json();
+
+        dispatch(remove(id));
+        return res;
+    } else {
+        const errors = res.errors;
+
+        return errors;
+    }
+};
+
 //reducer
 const reviewsReducer = (state = {}, action) => {
     switch(action.type) {
