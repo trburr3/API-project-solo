@@ -71,7 +71,7 @@ const ProfileButton = ( { user } ) => {
       { user ? (
           <>
             <li className='text-item'>{user.username}</li>
-            <li className='text-item'>{user.firstName} {user.lastName}</li>
+            <li className='text-item'>Hello, {user.firstName}</li>
             <li className='text-item'>{user.email}</li>
             <li>
               <button onClick={Logout} className="menu-button-1">Log Out</button>

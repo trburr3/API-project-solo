@@ -51,6 +51,8 @@ export const login = (credentials) => async dispatch => {
     } else {
         const errors = res.errors;
 
+        console.log('here is the problem: ', res)
+
         return errors;
     }
 };

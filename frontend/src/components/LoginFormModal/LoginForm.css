@@ -1,6 +1,8 @@
 .errors{
     color: red;
     font-weight: bold;
+    justify-content: center;
+    display: flex;
 }
 
 #login-button{
@@ -13,6 +15,10 @@
 }
 
 #login-button:hover{
+    background-color: #2A641C;
+}
+
+#login-button:disabled{
     background-color: #2A641C;
 }
 

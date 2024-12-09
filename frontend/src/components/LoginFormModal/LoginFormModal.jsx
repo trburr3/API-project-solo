@@ -8,7 +8,7 @@ import './LoginForm.css';
 const LoginFormModal = () => {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState('');
     const [disabled, setDisabled] = useState(true);
     // const navigate = useNavigate()
 
@@ -21,9 +21,12 @@ const LoginFormModal = () => {
     useEffect(() => {
         if(credential.length > 4) setDisabled(false);
         if(password.length > 6) setDisabled(false);
-    }, [credential, password, disabled])
+    }, [credential, password, setDisabled])
 
     // if ( user ) navigate('/');
+
+    // if(credential.length > 4) setDisabled(false);
+    // if(password.length > 6) setDisabled(false);
 
     // console.log(user)
 
@@ -42,19 +45,24 @@ const LoginFormModal = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors({});
+        // setErrors({});
 
         const credentials = {
             credential: credential,
             password: password
         };
 
+        // const user = await dispatch(login(credentials)).then(result => console.log(result)).catch(error => console.error('ERROR: ', error.statusText))
+
+        // console.log(user)
+
         return dispatch(login(credentials))
             .then(closeModal)
             .catch(async (res) => {
             const data = await res.json();
-            if (data && data.errors) {
-                setErrors(data.errors);
+            if (data) {
+                setErrors(data.message);
+                // console.log('here is the problem: ',errors)
             }
             });
 
@@ -89,7 +97,7 @@ const LoginFormModal = () => {
                 required />
             </label>
             </div>
-            {/* <div className="errors">{errors.password}</div> */}
+
             {errors.credential && ( <p>{errors.credential}</p> )}
             <div  className="input">
             <label>
@@ -104,7 +112,8 @@ const LoginFormModal = () => {
                 required />
             </label>
             </div>
-            <button id="login-button" type="Submit" data-testid='login-button' >Login</button>
+            <div className="errors">{errors}</div>
+            <button id="login-button" type="Submit" disabled={disabled} data-testid='login-button' >Login</button>
             <button className='menu-button-2' onClick={loginDemo} data-testid='demo-user-login'>Demo</button>
         </form>
         </div>
