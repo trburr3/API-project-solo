@@ -10,7 +10,7 @@ const ReviewFormModal = ({ spot }) => {
     const [stars, setStars] = useState(0);
     const [disabled, setDisabled] = useState(true);
 
-    // const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({});
 
 
     const { closeModal } = useModal();
@@ -47,8 +47,8 @@ const ReviewFormModal = ({ spot }) => {
         .catch(async (res) => {
         const data = await res.json();
         if ( data ) {
-            // setErrors(data.errors);
-            console.log(data)
+            setErrors(data);
+            // console.log(errors)
         }
         });
     }
@@ -59,7 +59,7 @@ const ReviewFormModal = ({ spot }) => {
         <h1>How was your stay?</h1>
         </div>
         <form onSubmit={handleSubmit}>
-            {/* <div className="errors">{errors.statusText}</div> */}
+            <div className="errors">{errors.message}</div>
             {/* <div className="errors">{errors.username}</div> */}
             <div className="review-text">
             <label>
