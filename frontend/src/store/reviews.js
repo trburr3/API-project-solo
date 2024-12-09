@@ -58,7 +58,7 @@ export const getSpotReviews = (id) => async dispatch => {
 };
 
 export const createReview = (data, id) => async dispatch => {
-    console.log('i have been dispatched')
+    // console.log('i have been dispatched')
     const res = await csrfFetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         headers:{
@@ -71,12 +71,12 @@ export const createReview = (data, id) => async dispatch => {
         const newReview = await res.json();
 
         dispatch(single(newReview));
-        return null;
+        return newReview;
     } else {
         console.log(res)
-        const errors = res.errors;
+        // const errors = res.errors;
 
-        return errors;
+        return res;
     }
 };
 

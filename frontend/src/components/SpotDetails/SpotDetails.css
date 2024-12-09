@@ -187,7 +187,7 @@ h4{
 .review-avg{
     font-size: xx-large;
     display: grid;
-    grid-template-columns: .06fr .01fr .1fr;
+    grid-template-columns: .06fr .01fr 1fr;
     margin-bottom: 10px;
 
 }

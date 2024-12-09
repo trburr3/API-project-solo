@@ -33,7 +33,7 @@ const Reviews = ({ spot, user }) => {
         return months[date.slice(5,7)-1] + ' ' + date.slice(0,4)
     }
 
-    // console.log('I HAVE HIT THE REVIEW COMP',reviews)
+    console.log('I HAVE HIT THE REVIEW COMP',user)
 
     // const user = useSelector(state => Object.values(state.session.user))[0]
     if(!user){

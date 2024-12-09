@@ -40,7 +40,7 @@ const ReviewFormModal = ({ spot }) => {
             stars
         };
 
-        console.log(payload)
+        console.log(spot)
 
         return dispatch(reviewActions.createReview(payload, spot.id))
         .then(closeModal)
