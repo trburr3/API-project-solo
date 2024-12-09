@@ -35,7 +35,7 @@ const ManageSpots = () => {
   return (
     <div className='manage'>
       <h1>Manage Spots</h1>
-      <button onClick={() => navigate('spots/new')} className='menu-button-1 manage-create'>Create a New Spot</button>
+      <button onClick={() => navigate('/spots/new')} className='menu-button-1 manage-create'>Create a New Spot</button>
       <div className='spots-container'>
       <ul className='spots'>
         {
