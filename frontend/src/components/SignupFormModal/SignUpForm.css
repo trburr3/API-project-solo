@@ -16,6 +16,10 @@
     background-color: #5D2CC6;
 }
 
+#signup-button:disabled{
+    background-color: blue;
+}
+
 .new-username, .first-name, .email, .last-name, .new-password{
     margin-right: 1rem;
 }
@@ -67,4 +71,3 @@
     ".user" ".email"
     ".password" ".confirm";
 }
-

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 // import { useNavigate } from "react-router-dom";
@@ -12,6 +12,8 @@ const SignupFormModal = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const [disabled, setDisabled] = useState(true);
 
     const [errors, setErrors] = useState({});
 
@@ -31,6 +33,10 @@ const SignupFormModal = () => {
     //      if(user) navigate('/')
     // }, [user, navigate]);
 
+    useEffect(() => {
+        if(username && firstName && lastName && email && password && confirmPassword) setDisabled(false)
+   }, [username, firstName, lastName, email, password, confirmPassword]);
+
     // const reset = () => {
     //     setUsername('');
     //     setFirstName('');
@@ -44,11 +50,11 @@ const SignupFormModal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // if(username.length < 4) {setErrors({ ...errors, username: 'Please provide a username with at least 4 characters.' });}
+        if(username.length < 4) {setErrors({ ...errors, username: 'Please provide a username with at least 4 characters.' });}
 
-        // if(username.includes('@')) setErrors({ ...errors, username: 'Username cannot be an email.' });
+        if(username.includes('@')) setErrors({ ...errors, username: 'Username cannot be an email.' });
 
-        // if(password.length < 6) setErrors({ ...errors, password: 'Password must be 6 characters or more.' });
+        if(password.length < 6) setErrors({ ...errors, password: 'Password must be 6 characters or more.' });
 
         if( password === confirmPassword ){
             setErrors({});
@@ -64,10 +70,10 @@ const SignupFormModal = () => {
             return dispatch(signUp(payload))
             .then(closeModal)
             .catch(async (res) => {
-            // const data = await res.json();
-            if ( res?.errors ) {
-                setErrors(res.errors);
-                console.log(errors)
+            const data = await res.json();
+            if ( data ) {
+                setErrors({data})
+                console.log('here is the problem: ', errors.data)
             }
             });
         }
@@ -84,7 +90,7 @@ const SignupFormModal = () => {
         <form onSubmit={handleSubmit}>
         <h1 className="form-title">Signup Form</h1>
             {/* <div className="errors">{errors.statusText}</div> */}
-            <div className="errors"   data-testid='email-error-message'>{errors.username}</div>
+            {/* <div className="errors"   data-testid='email-error-message'>{errors.data.errors.username}</div> */}
             <div className="input-large">
             <label>
             <span className="new-text">Username:</span>
@@ -98,8 +104,9 @@ const SignupFormModal = () => {
                 required />
             </label>
             </div>
+            {/* <div className="errors"   data-testid='email-error-message'>{errors.data.errors.email}</div> */}
             <div className="input-large">
-            {/* {errors.username && <p>{errors.username}</p>} */}
+            {errors.data && <p className="errors" >{errors.data.errors.username}</p>}
             <label>
                 Email:
                 <input
@@ -113,7 +120,7 @@ const SignupFormModal = () => {
             </label>
             </div>
             <div className="input-large">
-            {errors.email && <p>{errors.email}</p>}
+            {errors.data && <p className="errors" >{errors.data.errors.email}</p>}
             <label>
                 First Name:
                 <input
@@ -140,8 +147,10 @@ const SignupFormModal = () => {
                 required />
             </label>
             </div>
+            {/* <div className="errors"   data-testid='email-error-message'>{errors.data.errors.password}</div> */}
             <div className="input-large">
-            {errors.lastName && <p>{errors.lastName}</p>}
+            {errors.data && <p className="errors" >{errors.data.errors.password}</p>}
+            {/* {errors.lastName && <p>{errors.lastName}</p>} */}
             {/* <div className="errors">{errors.password}</div> */}
             <label>
                 Password:
@@ -171,7 +180,7 @@ const SignupFormModal = () => {
             </label>
             </div>
             {/* {errors.confirmPassword && ( <p>{errors.confirmPassword}</p> )} */}
-            <button id="signup-button" type="Submit" data-testid='form-sign-up-button'>Signup</button>
+            <button id="signup-button" type="Submit" data-testid='form-sign-up-button' disabled={disabled}>Signup</button>
         </form>
         </div>
         </>
