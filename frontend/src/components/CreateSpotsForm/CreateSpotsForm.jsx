@@ -37,7 +37,7 @@ const CreateSpotsForm = ({ spot }) => {
   const [preview, setPreview] = useState(spot?.preview);
   const [images, setImages] = useState({});
 
-  // const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
 
@@ -74,10 +74,19 @@ const CreateSpotsForm = ({ spot }) => {
         images
      };
     // console.log('THUNK AGAIN !!')
-    const newSpot = await dispatch(spotActions.createSpot(spot))
-    console.log('IM YOUR NEW SPOT', newSpot)
-    reset();
-    navigate(`/spots/${newSpot.id}`);
+    // const newSpot = await dispatch(spotActions.createSpot(spot))
+    // console.log('IM YOUR NEW SPOT', newSpot)
+    // reset();
+    // navigate(`/spots/${newSpot.id}`);
+    return dispatch(spotActions.createSpot(spot))
+            .then(navigate(`/spots/${spot.id}`))
+            .catch(async (res) => {
+            const data = await res.json();
+            if ( data ) {
+                setErrors({data})
+                console.log('here is the problem: ', errors.data.errors)
+            }
+            });
   };
 
   return (
@@ -97,9 +106,10 @@ const CreateSpotsForm = ({ spot }) => {
           value={country}
           className='form-input'
           onChange={(e) => setCountry(e.target.value)}
-          required
+          // required
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.country}</p>}
       <label>
       Street Address:
         <input
@@ -108,9 +118,10 @@ const CreateSpotsForm = ({ spot }) => {
           value={address}
           className='form-input'
           onChange={(e) => setAddress(e.target.value)}
-          required
+          // required
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.address}</p>}
       <label>
       City:
         <input
@@ -119,9 +130,10 @@ const CreateSpotsForm = ({ spot }) => {
           value={city}
           className='form-input'
           onChange={(e) => setCity(e.target.value)}
-          required
+          // required
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.city}</p>}
       <label>
       State:
         <input
@@ -130,9 +142,10 @@ const CreateSpotsForm = ({ spot }) => {
           value={state}
           className='form-input'
           onChange={(e) => setState(e.target.value)}
-          required
+          // required
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.state}</p>}
       <label>
       Latitude:
         <input
@@ -143,6 +156,7 @@ const CreateSpotsForm = ({ spot }) => {
           onChange={(e) => setLatitude(e.target.value)}
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.lat}</p>}
       <label>
       Longitude:
         <input
@@ -153,6 +167,7 @@ const CreateSpotsForm = ({ spot }) => {
           onChange={(e) => setLongitude(e.target.value)}
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.lng}</p>}
       </section>
       <section id='description' className='form-section' data-testid='section-3'>
         <h2 data-testid='section-2-heading'>Describe your place to guests</h2>
@@ -171,6 +186,7 @@ const CreateSpotsForm = ({ spot }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.description}</p>}
       </section>
       <section id='spot-name' className='form-section' data-testid='section-3'>
         <h2 data-testid='section-3-heading'>Create a title for your spot</h2>
@@ -185,6 +201,7 @@ const CreateSpotsForm = ({ spot }) => {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.name}</p>}
       </section>
       <section id='price' className='form-section' data-testid='section-4'>
         <h2 data-testid='section-4-heading'>Set a base price for your spot</h2>
@@ -199,6 +216,7 @@ const CreateSpotsForm = ({ spot }) => {
           onChange={(e) => setPrice(e.target.value)}
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.price}</p>}
       </section>
       <section id='photos' className='form-section' data-testid='section-5'>
         <h2 data-testid='section-5-heading'> Liven up your spot with photos</h2>
@@ -214,6 +232,7 @@ const CreateSpotsForm = ({ spot }) => {
           required
         />
       </label>
+      {errors.data && <p className="errors" >{errors.data.errors.preview}</p>}
       <label>
       Images:
         <input

@@ -26,15 +26,17 @@ const SpotDetails = () => {
 
     const spot = useSelector(spotActions.getSpots)[spotId-1];
 
-    // const spots = useSelector(spotActions.getSpots)
+    const spots = useSelector(spotActions.getSpots)
 
-    // console.log(spots)
+    console.log('LOOK AT ME: ',spots.length)
+    // console.log(spot)
 
    if(spot){
 
     // const spot = useSelector(spotActions.getSpots)[0];
 
     const spotOwner = spot.Owner;
+
 
     // console.log('HAVE I LOADED --> ',spotOwner);
 
