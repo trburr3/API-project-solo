@@ -43,19 +43,19 @@ const CreateSpotsForm = ({ spot }) => {
 
   // console.log('IM IN THE FORM COMP')
 
-  const reset = () => {
-    setCountry(''),
-    setAddress(''),
-    setCity(''),
-    setState(''),
-    setLatitude(''),
-    setLongitude(''),
-    setDescription(''),
-    setName(''),
-    setPrice(''),
-    setPreview(''),
-    setImages({})
-  }
+  // const reset = () => {
+  //   setCountry(''),
+  //   setAddress(''),
+  //   setCity(''),
+  //   setState(''),
+  //   setLatitude(''),
+  //   setLongitude(''),
+  //   setDescription(''),
+  //   setName(''),
+  //   setPrice(''),
+  //   setPreview(''),
+  //   setImages({})
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
