@@ -1,8 +1,8 @@
 
-@font-face {
+/* @font-face {
     font-family: 'minecraft-bold';
     src: url(/../../../fonts/Minecraft-Ten.ttf);
-}
+} */
 
 
 #header{
@@ -36,7 +36,8 @@
 }
 
 .page-title{
-    font-family: 'minecraft-bold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-family: 'minecraft-bold', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-weight: bolder;
 }
 
 .profile-dropdown{

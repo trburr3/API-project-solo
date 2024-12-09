@@ -33,13 +33,13 @@ const Reviews = ({ spot, user }) => {
         return months[date.slice(5,7)-1] + ' ' + date.slice(0,4)
     }
 
-    console.log('I HAVE HIT THE REVIEW COMP',user)
+    // console.log('I HAVE HIT THE REVIEW COMP',user)
 
     // const user = useSelector(state => Object.values(state.session.user))[0]
     if(!user){
         const reviewItems = reviews.map((review) =>
         <li key={review.id} className="review-item">
-        {console.log('I AM YOUR REVIEW',review)}
+        {/* {console.log('I AM YOUR REVIEW',review)} */}
         <div id="li-review-container" data-testid='review-item'>
             <div id="review-image-container">
             {review.ReviewImages.map((image) =>
