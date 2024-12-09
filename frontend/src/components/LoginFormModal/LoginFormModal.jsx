@@ -19,8 +19,7 @@ const LoginFormModal = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(credential.length > 4) setDisabled(false);
-        if(password.length > 6) setDisabled(false);
+        if(credential.length > 4 && password.length > 6) setDisabled(false);
     }, [credential, password, setDisabled])
 
     // if ( user ) navigate('/');

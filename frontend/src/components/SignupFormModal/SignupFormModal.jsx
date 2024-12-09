@@ -34,7 +34,7 @@ const SignupFormModal = () => {
     // }, [user, navigate]);
 
     useEffect(() => {
-        if(username && firstName && lastName && email && password && confirmPassword) setDisabled(false)
+        if(username && username.length > 4 && firstName && lastName && email && password && password.length > 6 && confirmPassword) setDisabled(false)
    }, [username, firstName, lastName, email, password, confirmPassword]);
 
     // const reset = () => {
