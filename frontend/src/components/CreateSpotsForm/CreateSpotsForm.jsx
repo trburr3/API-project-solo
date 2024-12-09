@@ -79,14 +79,16 @@ const CreateSpotsForm = ({ spot }) => {
     // reset();
     // navigate(`/spots/${newSpot.id}`);
     return dispatch(spotActions.createSpot(spot))
-            .then(navigate(`/spots/${spot.id}`))
+            .then(async (res) => navigate(`/spots/${res.id}`))
             .catch(async (res) => {
             const data = await res.json();
             if ( data ) {
                 setErrors({data})
                 console.log('here is the problem: ', errors.data.errors)
             }
+
             });
+
   };
 
   return (
