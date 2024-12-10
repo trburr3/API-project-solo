@@ -6,7 +6,7 @@ import './EditSpotForm.css';
 
 const EditSpotForm = () => {
   const spotId = useParams().spotId;
-  const spot = useSelector(spotActions.getSpots)[spotId-1]
+  const spot = useSelector(state => state.spots)[spotId]
 
   const navigate = useNavigate();
   const [country, setCountry] = useState(spot?.country);
@@ -21,29 +21,29 @@ const EditSpotForm = () => {
   const [preview, setPreview] = useState(spot?.previewImage);
   const [images, setImages] = useState({});
 
-  // const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
 
-  console.log('IM IN THE FORM COMP', spot.previewImage)
+  // console.log('IM IN THE FORM COMP', spot.previewImage)
 
   useEffect(() => {
     dispatch(spotActions.getAllSpots());
   },[dispatch])
 
-  const reset = () => {
-    setCountry(''),
-    setAddress(''),
-    setCity(''),
-    setState(''),
-    setLatitude(''),
-    setLongitude(''),
-    setDescription(''),
-    setName(''),
-    setPrice(''),
-    setPreview(''),
-    setImages({})
-  }
+  // const reset = () => {
+  //   setCountry(''),
+  //   setAddress(''),
+  //   setCity(''),
+  //   setState(''),
+  //   setLatitude(''),
+  //   setLongitude(''),
+  //   setDescription(''),
+  //   setName(''),
+  //   setPrice(''),
+  //   setPreview(''),
+  //   setImages({})
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,13 +54,27 @@ const EditSpotForm = () => {
         city,
         state,
         lat: latitude,
-        lng: longitude
+        lng: longitude,
+        name,
+        price,
+        description
      };
     // console.log('THUNK AGAIN !!')
-    const newSpot = await dispatch(spotActions.editSpot(data, spotId))
+    // const newSpot = await dispatch(spotActions.editSpot(data, spotId))
     // console.log('IM YOUR NEW SPOT', newSpot)
-    reset();
-    navigate(`/spots/${newSpot.id}`);
+    // reset();
+    // navigate(`/spots/${newSpot.id}`);
+
+    return dispatch(spotActions.editSpot(data, spotId))
+            .then(async (res) => navigate(`/spots/${res.id}`))
+            .catch(async (res) => {
+            const data = await res.json();
+            if ( data ) {
+                setErrors({data})
+                console.log('here is the problem: ', errors.data.errors)
+            }
+
+            });
   };
 
   return (

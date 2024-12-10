@@ -24,12 +24,14 @@ const SpotDetails = () => {
 
     const user  = useSelector( (state) => state.session.user );
 
-    const spot = useSelector(spotActions.getSpots)[spotId-1];
+    const spots = useSelector(state => state.spots)
 
-    // const spots = useSelector(spotActions.getSpots)
+    const spot = spots[spotId];
 
     // console.log('LOOK AT ME: ',spots.length)
-    // console.log(spot)
+
+
+    // console.log(spots[spotId])
 
    if(spot){
 
@@ -52,7 +54,7 @@ const SpotDetails = () => {
     </div>
     <div id="spot-details-container">
             <div id="pictures">
-            <img id="preview" src={spot.previewImage ? spot.previewImage : spot.SpotImages[0].url} alt={spot?.name}  data-testid='spot-large-image'/>
+            <img id="preview" src={spot.SpotImages? spot.SpotImages[0]?.url : spot.previewImage } alt={spot?.name}  data-testid='spot-large-image'/>
             <div id="spot-images" data-testid='spot-small-image'>
                 {/* <div> */}
                 <img id="image1" src={spot.SpotImages? spot.SpotImages[1]?.url : spot.previewImage} alt={spot?.name}/>
@@ -94,7 +96,7 @@ const SpotDetails = () => {
                     </li>
                     <li className="center-dot">·</li>
                     <li data-testid='review-count'>
-                    {spot.numReviews? spot.numReviews : "Be the first to post a review"} {spot.numReviews > 1 ? ("Reviews") : ("Review")}
+                    {spot.numReviews? spot.numReviews : "Be the first to post a "} {spot.numReviews > 1 ? ("Reviews") : ("Review")}
                     </li>
                     </div>
                     {user && user.id !== spotOwner?.id ? (

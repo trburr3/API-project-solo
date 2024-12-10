@@ -99,7 +99,7 @@ export const createSpot = (data) => async dispatch => {
 
 export const editSpot = (data ,id) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${id}`, {
-        method: 'POST',
+        method: 'PUT',
         headers:{
             'Content-Type': 'application/json'
         },
@@ -110,9 +110,10 @@ export const editSpot = (data ,id) => async dispatch => {
         const newSpot = await res.json();
 
         dispatch(update(newSpot));
+        console.log('HEY IM HERE:', newSpot)
         return newSpot;
     } else {
-        const errors = res.errors;
+        const errors = await res.json();
 
         return errors;
     }
@@ -148,8 +149,11 @@ const spotsReducer = (state = {}, action) => {
         }
         case RECEIVE_SPOT:
             return { ...state, [action.spot.id]: action.spot }
-        case UPDATE_SPOT:
-            return { ...state, [action.spot.id]: action.spot };
+        case UPDATE_SPOT: {
+            const newState = { ...state }
+            newState[action.spot.id] = action.spot;
+            return newState;
+        }
         case REMOVE_SPOT:{
             const spotState = { ...state }
             delete spotState[action.spotId];

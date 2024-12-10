@@ -11,7 +11,7 @@ const ListSpots = () => {
     const dispatch = useDispatch();
 
     const spots = useSelector(getSpots);
-    console.log(spots)
+    // console.log(spots)
 
     useEffect(() => {
         dispatch(spotActions.getAllSpots());

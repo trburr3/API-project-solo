@@ -437,6 +437,8 @@ if (spot.ownerId === user.id) {
     spot[attribute] = req.body[attribute];
   }
 
+  spot.save()
+
   return res.json(spot);
 } else {
   return res.status(403).json({
